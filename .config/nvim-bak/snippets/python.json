@@ -1,0 +1,25 @@
+{
+    "PyTest Skeleton": {
+        "prefix": "['ps', 'pytest_skeleton']",
+        "description": "Sets up a basic unit test file with PyTest",
+        "body": [
+            "import pytest",
+            "",
+            "",
+            "@pytest.fixture",
+            "def ${1:fixture}():",
+            "    return ${2:item}",
+            "",
+            "def ${3:test}_test(${1:fixture}):",
+            "    assert False"
+        ]
+    },
+    "Python function": {
+        "prefix": "['def', 'python function']",
+        "description": "Sets up a basic function",
+        "body": [
+            "def ${1:name}(${2:params}) -> ${3:return_type}:",
+            "    return ${2:item}"
+        ]
+    }
+}
