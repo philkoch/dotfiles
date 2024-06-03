@@ -36,7 +36,6 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::colored-man-pages
-zinit snippet OMZP::docker
 
 
 # Load completions
@@ -72,12 +71,10 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 
 # Aliases
-ALIAS_PATH="~/.zsh_aliases"
-[[ ! -f  "$ALIAS_PATH"]] || source "$ALIAS_PATH"
+[[ ! -f  ~/.zsh_aliases ]] || source ~/.zsh_aliases
 
 # Tokens
-TOKEN_PATH=~/.zsh_tokens
-[[ ! -f "$TOKEN_PATH" ]] || source "$TOKEN_PATH" 
+[[ ! -f ~/.zsh_tokens ]] || source ~/.zsh_tokens
 
 # SSH-Agent
 if ! pgrep -u $USER ssh-agent > /dev/null; then
@@ -99,5 +96,3 @@ if [ -f '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc' ]; then
 fi
 
 eval "$(fzf --zsh)"
-
-
