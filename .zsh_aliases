@@ -1,0 +1,80 @@
+alias ls='exa'
+alias ll='ls -lh'
+alias la='ls -lha'
+alias mkdir='mkdir -p'
+alias top='htop'
+alias pyac='source env/bin/activate'
+alias pipinc='python -m pip install --force-reinstall --no-cache-dir -r requirements.txt && python -m pip install --force-reinstall -r requirements_dev.txt'
+alias pipi='python -m pip install -r requirements.txt && python -m pip install -r requirements_dev.txt'
+alias wiki='cd ~/Documents/wiki.wiki'
+alias wikiweb='xdg-open https://github.com/aitastic/wiki/wiki'
+alias dev='cd ~/Development'
+alias lg='lazygit'
+alias vim='nvim'
+alias grep='rg'
+alias cat='bat'
+# always open in pager 
+alias glow='glow -p'
+
+alias off='shutdown now'
+alias restart='shutdown -r now'
+alias nvc='cd ~/.config/nvim && nvim .'
+
+alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
+alias mysql-prod="gcloud beta sql connect operator-index --user=root --quiet"
+# opens port to connect to cloud-sql at localhost:3307
+alias mysql-prod-port-forward="cloud_sql_proxy -instances aitastic-data:europe-west3:operator-index=tcp:0.0.0.0:3307 -credential_file=/home/phil/.secrets/gcloud_sql_credentials.json"
+
+
+# development apps in docker
+export DOCKER_APPS_DIR='/home/phil/Development/docker-configs'
+alias docker-elastic="docker-compose -f $DOCKER_APPS_DIR/elasticsearch-single-node-dev/docker-compose.yml"
+alias docker-mariadb="docker-compose -f $DOCKER_APPS_DIR/mariadb/docker-compose.yml"
+alias docker-redis="docker-compose -f $DOCKER_APPS_DIR/redis/docker-compose.yml"
+
+alias similarweb="cd ~/Development/scripts-and-configs/workarounds/similar_web_metrics"
+alias source-tracker="cd ~/Development/scripts-and-configs/workarounds/source-tracker"
+
+alias todo='task +work'
+
+alias rundevproc='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr python'
+
+#functions
+
+docker_ip() {
+    # prints out the IPAddress of the container with name $1, requires 1 positional argument
+    docker inspect $1 | jq '.[0].NetworkSettings.Networks' | grep 'IPAddress' 
+}
+
+
+gitall() {
+    git add .
+    if [ "$1" != "" ] # or better, if [ -n "$1" ]
+    then
+        git commit -m "$1"
+    else
+        git commit -m update
+    fi
+    git push
+}
+
+download_es_doc() {
+    ID=$1
+    if [[ -z $ID ]]; then
+        echo "You need to set a ID! e.g. download_es_doc 42d1a1c7a2526959bf79c2439ef186a2e4753f1a203b1b7efa3b8f8b6b39e32f"
+        return 1
+    fi
+    http -a $ELASTICSEARCH_AUTH "https://es.aitastic.com/newsstand/_search?q=_id:$ID" | jq > $ID.json
+}
+
+colorize_stderr() {
+    # colorizes stderr-output of the following command in RED
+    # e.g. colorize_stderr $command
+    local RED="\033[0;31m"
+    local NO_COLOR="\033[0m" # Keine Farbe
+
+    "$@" 2> >(while read -r line; do
+        # Färben Sie stderr rot
+        echo -e "${RED}${line}${NO_COLOR}"
+    done)
+}
