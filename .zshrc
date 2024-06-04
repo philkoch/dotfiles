@@ -23,19 +23,17 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in PowerLevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# Add in syntax-highlighting, completions and autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
 # Add in snippets from Oh My ZSH
 # names come from here https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
-zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::command-not-found
-zinit snippet OMZP::colored-man-pages
+
+zinit wait lucid for \
+  OMZP::git \
+  OMZP::kubectl \
+  OMZP::poetry \
+  OMZP::sudo \
+  OMZP::command-not-found \
+  OMZP::colored-man-pages \
+  OMZP::ssh-agent
 
 
 # Load completions
@@ -58,6 +56,7 @@ SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
+# don't store in history if first char is space
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
@@ -70,29 +69,20 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 
-# Aliases
-[[ ! -f  ~/.zsh_aliases ]] || source ~/.zsh_aliases
+zstyle ':omz:plugins:ssh-agent' lazy yes
 
-# Tokens
-[[ ! -f ~/.zsh_tokens ]] || source ~/.zsh_tokens
-
-# SSH-Agent
-if ! pgrep -u $USER ssh-agent > /dev/null; then
-	ssh-agent | sed '$d' > ~/.ssh-agent-pid
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-	eval $(<~/.ssh-agent-pid)
-fi
-ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh;ssh'
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/phil/Tools/google-cloud-sdk/path.zsh.inc' ]; then
-    . '/home/phil/Tools/google-cloud-sdk/path.zsh.inc';
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc' ]; then
-    . '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc';
-fi
+zinit snippet ~/.zsh_aliases
+zinit snippet ~/.zsh_tokens
+# update path for gcloud
+zinit snippet ~/Tools/google-cloud-sdk/path.zsh.inc
+zinit snippet ~/Tools/google-cloud-sdk/completion.zsh.inc
 
 eval "$(fzf --zsh)"
+
+# Add in syntax-highlighting, completions and autosuggestions
+zinit wait lucid for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        zsh-users/zsh-syntax-highlighting \
+        zsh-users/zsh-completions \
+        zsh-users/zsh-autosuggestions \
+        Aloxaf/fzf-tab
