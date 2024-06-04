@@ -122,10 +122,10 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- easier buffer resizing
-vim.keymap.set("n", "<C-Up>", ":resize -2<CR>")
-vim.keymap.set("n", "<C-Down>", ":resize +2<CR>")
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<C-Up>", "<C-W>+")
+vim.keymap.set("n", "<C-Down>", "<C-W>-")
+vim.keymap.set("n", "<C-Left>", "<c-w>5<")
+vim.keymap.set("n", "<C-Right>", "<c-w>5>")
 
 -- AUTOCOMMANDS >>>>>>>>
 
@@ -137,6 +137,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		if vim.o.filetype == "help" then
 			vim.cmd.wincmd("L")
 		end
+	end,
+})
+
+-- highlighted yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	--pattern = { "*" },
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
 	end,
 })
 
