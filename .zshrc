@@ -71,6 +71,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 
 zstyle ':omz:plugins:ssh-agent' lazy yes
 
+# load aliases and token-env-variables
 zinit snippet ~/.zsh_aliases
 zinit snippet ~/.zsh_tokens
 # update path for gcloud

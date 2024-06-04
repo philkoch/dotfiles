@@ -1,25 +1,32 @@
+# replace ls with exa
 alias ls='exa'
 alias ll='ls -lh'
 alias la='ls -lha'
+
+# always mk complete path
 alias mkdir='mkdir -p'
+
+# pretty top
 alias top='htop'
-alias pyac='source env/bin/activate'
-alias pipinc='python -m pip install --force-reinstall --no-cache-dir -r requirements.txt && python -m pip install --force-reinstall -r requirements_dev.txt'
-alias pipi='python -m pip install -r requirements.txt && python -m pip install -r requirements_dev.txt'
-alias wiki='cd ~/Documents/wiki.wiki'
-alias wikiweb='xdg-open https://github.com/aitastic/wiki/wiki'
+
 alias dev='cd ~/Development'
-alias lg='lazygit'
+# always use nvim
 alias vim='nvim'
+# directly edit neovim config
+alias nvc='cd ~/.config/nvim && nvim'
+
 alias grep='rg'
 alias cat='bat'
+alias lg='lazygit'
+
 # always open in pager 
 alias glow='glow -p'
 
+# power management
 alias off='shutdown now'
 alias restart='shutdown -r now'
-alias nvc='cd ~/.config/nvim && nvim .'
 
+# sql connections
 alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
 alias mysql-prod="gcloud beta sql connect operator-index --user=root --quiet"
 # opens port to connect to cloud-sql at localhost:3307
@@ -32,33 +39,26 @@ alias docker-elastic="docker-compose -f $DOCKER_APPS_DIR/elasticsearch-single-no
 alias docker-mariadb="docker-compose -f $DOCKER_APPS_DIR/mariadb/docker-compose.yml"
 alias docker-redis="docker-compose -f $DOCKER_APPS_DIR/redis/docker-compose.yml"
 
-alias similarweb="cd ~/Development/scripts-and-configs/workarounds/similar_web_metrics"
-alias source-tracker="cd ~/Development/scripts-and-configs/workarounds/source-tracker"
-
+# taskwarrior
 alias todo='task +work'
 
 alias rundevproc='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr python'
 
-#functions
+# workaround scripts media monitoring
+alias similarweb="cd ~/Development/scripts-and-configs/workarounds/similar_web_metrics"
+alias source-tracker="cd ~/Development/scripts-and-configs/workarounds/source-tracker"
 
+##########################################
+# FUNCTIONS                              #
+##########################################
 docker_ip() {
     # prints out the IPAddress of the container with name $1, requires 1 positional argument
     docker inspect $1 | jq '.[0].NetworkSettings.Networks' | grep 'IPAddress' 
 }
 
 
-gitall() {
-    git add .
-    if [ "$1" != "" ] # or better, if [ -n "$1" ]
-    then
-        git commit -m "$1"
-    else
-        git commit -m update
-    fi
-    git push
-}
-
 download_es_doc() {
+    # downloads a document from prod-Elasticsearch into a JSON-file based on it's ID
     ID=$1
     if [[ -z $ID ]]; then
         echo "You need to set a ID! e.g. download_es_doc 42d1a1c7a2526959bf79c2439ef186a2e4753f1a203b1b7efa3b8f8b6b39e32f"
