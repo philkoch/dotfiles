@@ -75,8 +75,15 @@ zstyle ':omz:plugins:ssh-agent' lazy yes
 zinit snippet ~/.zsh_aliases
 zinit snippet ~/.zsh_tokens
 # update path for gcloud
-zinit snippet ~/Tools/google-cloud-sdk/path.zsh.inc
-zinit snippet ~/Tools/google-cloud-sdk/completion.zsh.inc
+# # The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/phil/Tools/google-cloud-sdk/path.zsh.inc' ]; then
+    . '/home/phil/Tools/google-cloud-sdk/path.zsh.inc';
+fi
+
+# # The next line enables shell command completion for gcloud.
+if [ -f '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc' ]; then
+    . '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc';
+fi
 
 eval "$(fzf --zsh)"
 
