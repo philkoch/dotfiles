@@ -28,7 +28,6 @@ The following plugins are used:
 | [vim-wakatime](https://github.com/wakatime/vim-wakatime) | easy time-tracking |
 | [neodev](https://github.com/folke/neodev.nvim) | autocompletion for neovim apis |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | git information in buffers |
-| [auto-session](https://github.com/rmagatti/auto-session) | saves and restores the last buffer layout |
 | [refactoring](https://github.com/ThePrimeagen/refactoring.nvim) | refactoring functionality like extracting functions or variables |
 | [treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) | displays the of the current function at the top |
 | [neotest](https://github.com/nvim-neotest/neotest) | prettier tests |
@@ -39,6 +38,7 @@ The following plugins are used:
 | [todo-comments](https://github.com/folke/todo-comments.nvim) | highlights TODO's in code |
 | [noice.nvim](https://github.com/folke/noice.nvim) | prettier messages and statusline |
 | [aerial.nvim](https://github.com/stevearc/aerial.nvim) | outline |
+| [mini.nvim](https://github.com/echasnovski/mini.nvim/tree/main) | plugin-ecosystem |
 
 
 ---
