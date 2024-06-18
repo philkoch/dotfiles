@@ -23,6 +23,11 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Add in PowerLevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# initialize pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 # Add in snippets from Oh My ZSH
 # names come from here https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins
 
