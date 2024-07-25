@@ -137,6 +137,32 @@ return {
 			},
 		}, { prefix = "<leader>" })
 
+		-- refactoring.nvim
+		refactoring = require("refactoring")
+		wk.register({
+			r = {
+				" REFACTOR",
+				e = "Extract",
+				f = "Function",
+				v = "Variable",
+			},
+		}, { prefix = "<leader>" })
+
 		wk.setup()
+
+		copilot = require("copilot")
+		copilot_panel = require("copilot.panel")
+		copilot_suggestion = require("copilot.suggestion")
+		wk.register({
+			c = {
+				name = " COPILOT",
+				p = { copilot_panel.open, "Open Panel" },
+				E = { copilot.enable, "Enable" },
+				D = { copilot.disable, "Disable" },
+				a = { copilot.attach, "attach to buffer" },
+				d = { copilot.detach, "detach from buffer" },
+				s = { copilot_suggestion.toggle_auto_trigger, "toggle auto-trigger" },
+			},
+		}, { prefix = "<leader>" })
 	end,
 }
