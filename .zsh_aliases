@@ -27,7 +27,7 @@ alias off='shutdown now'
 alias restart='shutdown -r now'
 
 # sql connections
-alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
+alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1 --skip-ssl'
 alias mysql-prod="gcloud beta sql connect operator-index --user=root --quiet"
 # opens port to connect to cloud-sql at localhost:3307
 alias mysql-prod-port-forward="cloud_sql_proxy -instances aitastic-data:europe-west3:operator-index=tcp:0.0.0.0:3307 -credential_file=/home/phil/.secrets/gcloud_sql_credentials.json"
@@ -35,14 +35,16 @@ alias mysql-prod-port-forward="cloud_sql_proxy -instances aitastic-data:europe-w
 
 # development apps in docker
 export DOCKER_APPS_DIR='/home/phil/Development/docker-configs'
-alias docker-elastic="docker-compose -f $DOCKER_APPS_DIR/elasticsearch-single-node-dev/docker-compose.yml"
-alias docker-mariadb="docker-compose -f $DOCKER_APPS_DIR/mariadb/docker-compose.yml"
-alias docker-redis="docker-compose -f $DOCKER_APPS_DIR/redis/docker-compose.yml"
+alias docker-elastic="docker compose -f $DOCKER_APPS_DIR/elasticsearch-single-node-dev/docker-compose.yml"
+alias docker-mysql="docker compose -f $DOCKER_APPS_DIR/mysql/docker-compose.yml"
+alias docker-redis="docker compose -f $DOCKER_APPS_DIR/redis/docker-compose.yml"
 
 # taskwarrior
 alias todo='task +work'
+alias tis='timew summary :id'
 
 alias rundevproc='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr python'
+alias rundevmod='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr python -m'
 
 # workaround scripts media monitoring
 alias similarweb="cd ~/Development/scripts-and-configs/workarounds/similar_web_metrics"
