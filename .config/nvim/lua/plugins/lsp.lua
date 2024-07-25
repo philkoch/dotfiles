@@ -18,8 +18,6 @@ return {
 		{ "hrsh7th/nvim-cmp" },
 		{ "onsails/lspkind.nvim" },
 
-		-- Snippets
-		{ "rafamadriz/friendly-snippets" },
 		-- lsp-colors
 		"folke/lsp-colors.nvim",
 	},
