@@ -14,6 +14,7 @@ return {
 		local dap_py = require("dap-python")
 		dap_py.setup("~/.config/nvim/.virtualenvs/debugpy/bin/python")
 		dap_py.test_runner = "pytest"
+		dap_py.justMyCode = false
 
 		vim.fn.sign_define(
 			"DapBreakpoint",

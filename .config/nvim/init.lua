@@ -93,6 +93,9 @@ vim.opt.shortmess = "filmxstToOF"
 -- treeview in netrw
 vim.g.netrw_liststyle = 3
 
+-- use indent-fold method
+-- vim.opt.foldmethod = "indent"
+
 -- KEY MAPPINGS >>>>>>>>
 
 -- netrw file explorer
@@ -143,9 +146,19 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 -- highlighted yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	--pattern = { "*" },
 	callback = function()
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+	end,
+})
+
+-- close neotest-windows before leaving nvim, since they are loaded empty when stored
+-- with the session
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	group = vim.api.nvim_create_augroup("neotest", {}),
+	callback = function()
+		local neotest = require("neotest")
+		neotest.summary.close()
+		neotest.output_window.close()
 	end,
 })
 
@@ -169,7 +182,8 @@ require("lazy").setup("plugins", { defaults = { lazy = false } })
 -- COLORSCHEME >>>>>>>
 -- set colorscheme AFTER loading plugins
 -- vim.cmd.colorscheme("catppuccin")
-vim.cmd.colorscheme("tokyonight-night")
+-- vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("eldritch")
 
 -- highlights the current line number
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f9e2af", bg = "#33313a", bold = true })

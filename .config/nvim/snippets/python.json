@@ -10,7 +10,7 @@
             "def ${1:fixture}():",
             "    return ${2:item}",
             "",
-            "def ${3:test}_test(${1:fixture}):",
+            "def test_${3:test}(${1:fixture}):",
             "    assert False"
         ]
     },
