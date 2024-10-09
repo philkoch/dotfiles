@@ -10,61 +10,69 @@ return {
 		local wk = require("which-key")
 		-- telescope keymaps
 		local telescope_builtin = require("telescope.builtin")
-		wk.register({
-			f = {
-				name = " FIND",
-				b = { telescope_builtin.buffers, "Find Buffer" },
-				c = { telescope_builtin.command_history, "Find Command" },
-				f = { telescope_builtin.find_files, "Find File" },
-				t = { telescope_builtin.live_grep, "Find Text" },
-				h = { telescope_builtin.help_tags, "Find Help" },
-				e = { telescope_builtin.oldfiles, "Find Recent File" },
-				j = { telescope_builtin.jumplist, "Find Jump" },
-				q = { telescope_builtin.quickfix, "Find QuickFix" },
-				l = { telescope_builtin.pickers, "Last Pickers" },
-				r = { telescope_builtin.resume, "Resume Results" },
-			},
-		}, { prefix = "<leader>" })
+		wk.add({
+			{ "<leader>f", group = "FIND" },
+			{ "<leader>fb", telescope_builtin.buffers, desc = "Find Buffer" },
+			{ "<leader>fc", telescope_builtin.command_history, desc = "Find Command" },
+			{ "<leader>fe", telescope_builtin.oldfiles, desc = "Find Recent File" },
+			{ "<leader>ff", telescope_builtin.find_files, desc = "Find File" },
+			{ "<leader>fh", telescope_builtin.help_tags, desc = "Find Help" },
+			{ "<leader>fj", telescope_builtin.jumplist, desc = "Find Jump" },
+			{ "<leader>fl", telescope_builtin.pickers, desc = "Last Pickers" },
+			{ "<leader>fq", telescope_builtin.quickfix, desc = "Find QuickFix" },
+			{ "<leader>fr", telescope_builtin.resume, desc = "Resume Results" },
+			{ "<leader>ft", telescope_builtin.live_grep, desc = "Find Text" },
+		})
 
 		-- mason keymaps
-		wk.register({
-			m = {
-				name = " MASON",
-				o = { "<cmd>Mason<CR>", "Open" },
-				i = { "<cmd>MasonInstall ", "Install..." },
-				u = { "<cmd>MasonUninstall ", "Uninstall..." },
-				l = { "<cmd>MasonLog ", "Log" },
-			},
-		}, { prefix = "<leader>" })
+		wk.add({
+			{ "<leader>m", group = "MASON" },
+			{ "<leader>mi", "<cmd>MasonInstall ", desc = "Install..." },
+			{ "<leader>ml", "<cmd>MasonLog ", desc = "Log" },
+			{ "<leader>mo", "<cmd>Mason<CR>", desc = "Open" },
+			{ "<leader>mu", "<cmd>MasonUninstall ", desc = "Uninstall..." },
+		})
 
 		-- Lsp keymaps
-		wk.register({
-			l = {
-				-- defined in lsp.lua
-				name = " LSP",
-				d = "Open Diagnostic",
-				a = "Code action",
-				r = "References",
-				m = "Rename",
-				n = "Next Diagnostic",
-				p = "Previous Diagnostic",
-				q = "Quick Documentation",
-				s = "Signature Help",
-				o = { "<cmd>AerialToggle<CR>", "Outline" },
-				R = { "<cmd>LspRestart<CR>", "Restart LSP" },
+		local neogen = require("neogen")
+		wk.add({
+			{ "<leader>l", group = "LSP" },
+			{ "<leader>lR", "<cmd>LspRestart<CR>", desc = "Restart LSP" },
+			{ "<leader>la", desc = "Code action" },
+			{ "<leader>ld", desc = "Open Diagnostic" },
+			{ "<leader>lm", desc = "Rename" },
+			{ "<leader>ln", desc = "Next Diagnostic" },
+			{ "<leader>lo", "<cmd>AerialToggle<CR>", desc = "Outline" },
+			{ "<leader>lp", desc = "Previous Diagnostic" },
+			{ "<leader>lq", desc = "Quick Documentation" },
+			{ "<leader>lr", desc = "References" },
+			{ "<leader>ls", desc = "Signature Help" },
+			{
+				"<leader>lcc",
+				function()
+					neogen.generate({ type = "class" })
+				end,
+				desc = "Document Class",
 			},
-		}, { prefix = "<leader>" })
+			{
+				"<leader>lcf",
+				function()
+					neogen.generate({ type = "func" })
+				end,
+				desc = "Document Class",
+			},
+		})
 
 		-- others
-		wk.register({
-			g = {
-				name = " GIT",
-				g = { "<cmd>LazyGit<CR>", "lazygit" },
-			},
-			u = "  UNDOTREE",
-			h = { "<cmd>noh<CR>", "  NO HIGHLIGHT" },
-			x = "  TROUBLE TOGGLE",
-			y = {
+		wk.add({
+			{ "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = " EXPLORER" },
+			{ "<leader>g", group = " GIT" },
+			{ "<leader>gg", "<cmd>LazyGit<CR>", desc = "lazygit" },
+			{ "<leader>h", "<cmd>noh<CR>", desc = " NO HIGHLIGHT" },
+			{ "<leader>u", desc = "UNDOTREE" },
+			{ "<leader>x", desc = "TROUBLE TOGGLE" },
+			{
+				"<leader>y",
 				function()
 					if require("peek").is_open() then
 						require("peek").close()
@@ -72,97 +80,224 @@ return {
 						require("peek").open()
 					end
 				end,
-				"  .MD PREVIEW",
+				desc = " .MD PREVIEW",
 			},
-			e = { "<cmd>NvimTreeToggle<CR>", " EXPLORER" },
-		}, { prefix = "<leader>" })
+		})
 
 		-- debugger
-		wk.register({
-			d = {
-				name = " DEBUG",
-				x = { "<cmd>lua require('dap').terminate()<CR>", "Stop" },
-				m = {
-					"<cmd>lua require('dap-python').test_method({ config = { justMyCode = false } })<CR>",
-					"Test Method",
-				},
-				c = {
-					"<cmd>lua require('dap-python').test_class({ config = { justMyCode = false } })<CR>",
-					"Test Class",
-				},
-				b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Toggle Breakpoint" },
-				r = { "<cmd>lua require('dap').restart()<CR>", "Restart Session" },
-				l = { "<cmd>lua require('dap').run_last()<CR>", "Run Last Session" },
-				p = { "<cmd>lua require('dap').repl.open()<CR>", "Open REPL" },
-				B = {
-
-					function()
-						vim.ui.input({
-							prompt = "Enter condition:",
-						}, function(input)
-							if input ~= nil then
-								require("dap").toggle_breakpoint(input)
-							end
-						end)
-					end,
-					"Conditional Breakpoint",
-				},
+		local dap = require("dap")
+		local dap_py = require("dap-python")
+		wk.add({
+			{ "<leader>d", group = "DEBUG" },
+			{
+				"<leader>db",
+				function()
+					dap.toggle_breakpoint()
+				end,
+				desc = "Toggle Breakpoint",
 			},
-		}, { prefix = "<leader>" })
+			{
+				"<leader>dc",
+				function()
+					dap_py.test_class({ config = { justMyCode = false } })
+				end,
+				desc = "Test Class",
+			},
+			{
+				"<leader>dl",
+				function()
+					dap.run_last()
+				end,
+				desc = "Run Last Session",
+			},
+			{
+				"<leader>dm",
+				function()
+					dap_py.test_method({ config = { justMyCode = false } })
+				end,
+				desc = "Test Method",
+			},
+			{
+				"<leader>dp",
+				function()
+					dap.repl.open()
+				end,
+				desc = "Open REPL",
+			},
+			{
+				"<leader>dr",
+				function()
+					dap.restart()
+				end,
+				desc = "Restart Session",
+			},
+			{
+				"<leader>dx",
+				function()
+					dap.terminate()
+				end,
+				desc = "Stop",
+			},
+			{
+				"<leader>dB",
+				function()
+					vim.ui.input({
+						prompt = "Enter condition:",
+					}, function(input)
+						if input ~= nil then
+							dap.toggle_breakpoint(input)
+						end
+					end)
+				end,
+				desc = "Conditional Breakpoint",
+			},
+		})
 
-		wk.register({
-			["<F5>"] = { "<cmd>lua require'dap'.continue()<CR>", "Launch / Continue" },
-			["<F10>"] = { "<cmd>lua require'dap'.step_over()<CR>", "Step Over" },
-			["<F11>"] = { "<cmd>lua require'dap'.step_into()<CR>", "Step Into" },
-			["<F12>"] = { "<cmd>lua require'dap'.step_out()<CR>", "Step Out" },
+		wk.add({
+			{
+				"<F5>",
+				function()
+					dap.continue()
+				end,
+				desc = "Launch / Continue",
+			},
+			{
+				"<F10>",
+				function()
+					dap.step_over()
+				end,
+				desc = "Step Over",
+			},
+			{
+				"<F11>",
+				function()
+					dap.step_into()
+				end,
+				desc = "Step Into",
+			},
+			{
+				"<F12>",
+				function()
+					dap.step_out()
+				end,
+				desc = "Step Out",
+			},
 		})
 
 		-- test-suite
-		wk.register({
-			t = {
-				name = " TEST",
-				t = {
-					"<cmd>lua require('neotest').run.run()<CR><cmd>lua require('neotest').summary.open()<CR>",
-					"Run nearest test",
-				},
-				f = {
-					"<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR><cmd>lua require('neotest').summary.open()<CR>",
-					"Test current file",
-				},
-
-				l = { "<cmd>lua require('neotest').run.run_last()<CR>", "Run last configuration" },
-				x = { "<cmd>lua require('neotest').run.stop()<CR>", "Stop test run" },
-				s = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Toggle test summary" },
-				o = { "<cmd>lua require('neotest').output_panel.toggle()<CR>", "Toggle test output" },
+		local neotest = require("neotest")
+		wk.add({
+			{ "<leader>t", group = "TEST" },
+			{
+				"<leader>tf",
+				function()
+					neotest.run.run(vim.fn.expand("%"))
+					neotest.summary.open()
+				end,
+				desc = "Test current file",
 			},
-		}, { prefix = "<leader>" })
+			{
+				"<leader>tl",
+				function()
+					neotest.run.run_last()
+				end,
+				desc = "Run last configuration",
+			},
+			{
+				"<leader>to",
+				function()
+					neotest.output_panel.toggle()
+				end,
+				desc = "Toggle test output",
+			},
+			{
+				"<leader>ts",
+				function()
+					neotest.summary.toggle()
+				end,
+				desc = "Toggle test summary",
+			},
+			{
+				"<leader>tt",
+				function()
+					neotest.run.run()
+					neotest.summary.open()
+				end,
+				desc = "Run nearest test",
+			},
+			{
+				"<leader>tx",
+				function()
+					neotest.run.stop()
+				end,
+				desc = "Stop test run",
+			},
+		})
 
 		-- refactoring.nvim
-		refactoring = require("refactoring")
-		wk.register({
-			r = {
-				" REFACTOR",
-				e = "Extract",
-				f = "Function",
-				v = "Variable",
+		wk.add({
+			{ "<leader>r", desc = " REFACTOR" },
+			{ "<leader>re", desc = "Extract" },
+			{ "<leader>rf", desc = "Function" },
+			{ "<leader>rv", desc = "Variable" },
+		})
+
+		local copilot = require("copilot")
+		local copilot_panel = require("copilot.panel")
+		local copilot_suggestion = require("copilot.suggestion")
+		wk.add({
+			{ "<leader>c", group = "COPILOT" },
+			{
+				"<leader>cp",
+				function()
+					copilot_panel.open()
+				end,
+				desc = "Open Panel",
 			},
-		}, { prefix = "<leader>" })
+			{
+				"<leader>cE",
+				function()
+					copilot.enable()
+				end,
+				desc = "Enable",
+			},
+			{
+				"<leader>cD",
+				function()
+					copilot_panel.disable()
+				end,
+				desc = "Disable",
+			},
+			{
+				"<leader>ca",
+				function()
+					copilot_panel.attach()
+				end,
+				desc = "attach to buffer",
+			},
+			{
+				"<leader>cd",
+				function()
+					copilot_panel.detach()
+				end,
+				desc = "detach from buffer",
+			},
+			{
+				"<leader>cp",
+				function()
+					copilot_panel.open()
+				end,
+				desc = "Open Panel",
+			},
+			{
+				"<leader>cs",
+				function()
+					copilot_suggestion.toggle_auto_trigger()
+				end,
+				desc = "toggle auto-trigger",
+			},
+		})
 
 		wk.setup()
-
-		copilot = require("copilot")
-		copilot_panel = require("copilot.panel")
-		copilot_suggestion = require("copilot.suggestion")
-		wk.register({
-			c = {
-				name = " COPILOT",
-				p = { copilot_panel.open, "Open Panel" },
-				E = { copilot.enable, "Enable" },
-				D = { copilot.disable, "Disable" },
-				a = { copilot.attach, "attach to buffer" },
-				d = { copilot.detach, "detach from buffer" },
-				s = { copilot_suggestion.toggle_auto_trigger, "toggle auto-trigger" },
-			},
-		}, { prefix = "<leader>" })
 	end,
 }
