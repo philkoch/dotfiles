@@ -76,9 +76,25 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 
 zstyle ':omz:plugins:ssh-agent' lazy yes
 
+# Eldritch colortheme
+zstyle :prompt:pure:git:arrow color "#f16c75"
+zstyle :prompt:pure:git:branch color "#04d1f9"
+zstyle :prompt:pure:path color "#37f499"
+zstyle :prompt:pure:prompt:error color "#f16c75"
+zstyle :prompt:pure:prompt:success color "#37f499"
+zstyle :prompt:pure:prompt:continuation color "#f7c67f"
+zstyle :prompt:pure:suspended_jobs color "#f16c75"
+zstyle :prompt:pure:user color "#a48cf2"
+zstyle :prompt:pure:user:root color "#f1fc79"
+
 # load aliases and token-env-variables
-zinit snippet ~/.zsh_aliases
-zinit snippet ~/.zsh_tokens
+if [ -f '/home/phil/.zsh_aliases' ]; then
+    . '/home/phil/.zsh_aliases';
+fi
+if [ -f '/home/phil/.zsh_tokens' ]; then
+    . '/home/phil/.zsh_tokens';
+fi
+
 # update path for gcloud
 # # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/phil/Tools/google-cloud-sdk/path.zsh.inc' ]; then
