@@ -5,10 +5,12 @@ return {
 	lazy = true,
 	config = function()
 		require("neogen").setup({
-			snippet_engine = "luasnip",
+			enabled = true,
 			languages = {
 				python = {
-					["python.reST"] = require("neogen.configurations.python"),
+					template = {
+						annotation_convention = "reST",
+					},
 				},
 			},
 		})
