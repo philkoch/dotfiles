@@ -27,7 +27,7 @@ alias off='shutdown now'
 alias restart='shutdown -r now'
 
 # sql connections
-alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1 --skip-ssl'
+alias mysql-local='mysql -uroot -ppassword -h127.0.0.1'
 alias mysql-prod="gcloud beta sql connect operator-index --user=root --quiet"
 # opens port to connect to cloud-sql at localhost:3307
 alias mysql-prod-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3307 aitastic-data:europe-west3:operator-index"
@@ -41,14 +41,15 @@ alias docker-redis="docker compose -f $DOCKER_APPS_DIR/redis/docker-compose.yml"
 
 # taskwarrior / timewarrior
 alias todo='task +work'
+alias todor='task +work +recurring'
 alias tis='timew summary :id'
 alias tisy='timew summary :id :yesterday'
 alias tisw='timew summary :id :week'
 alias tism='timew summary :id :month'
 
 # processor development
-alias rundevproc='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr python'
-alias rundevmod='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr python -m'
+alias rundevproc='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr poetry run python'
+alias rundevmod='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && colorize_stderr poetry run python -m'
 
 # workaround scripts media monitoring
 alias similarweb="cd ~/Development/scripts-and-configs/workarounds/similar_web_metrics"
