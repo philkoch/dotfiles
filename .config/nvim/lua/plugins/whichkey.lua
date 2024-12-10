@@ -64,10 +64,12 @@ return {
 		})
 
 		-- others
+		local gitsigns = require("gitsigns")
 		wk.add({
 			{ "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = " EXPLORER" },
 			{ "<leader>g", group = " GIT" },
 			{ "<leader>gg", "<cmd>LazyGit<CR>", desc = "lazygit" },
+			{ "<leader>gb", gitsigns.blame_line, desc = "Blame Line" },
 			{ "<leader>h", "<cmd>noh<CR>", desc = " NO HIGHLIGHT" },
 			{ "<leader>u", desc = "UNDOTREE" },
 			{ "<leader>x", desc = "TROUBLE TOGGLE" },
@@ -240,62 +242,6 @@ return {
 			{ "<leader>re", desc = "Extract" },
 			{ "<leader>rf", desc = "Function" },
 			{ "<leader>rv", desc = "Variable" },
-		})
-
-		local copilot = require("copilot")
-		local copilot_panel = require("copilot.panel")
-		local copilot_suggestion = require("copilot.suggestion")
-		wk.add({
-			{ "<leader>c", group = "COPILOT" },
-			{
-				"<leader>cp",
-				function()
-					copilot_panel.open()
-				end,
-				desc = "Open Panel",
-			},
-			{
-				"<leader>cE",
-				function()
-					copilot.enable()
-				end,
-				desc = "Enable",
-			},
-			{
-				"<leader>cD",
-				function()
-					copilot_panel.disable()
-				end,
-				desc = "Disable",
-			},
-			{
-				"<leader>ca",
-				function()
-					copilot_panel.attach()
-				end,
-				desc = "attach to buffer",
-			},
-			{
-				"<leader>cd",
-				function()
-					copilot_panel.detach()
-				end,
-				desc = "detach from buffer",
-			},
-			{
-				"<leader>cp",
-				function()
-					copilot_panel.open()
-				end,
-				desc = "Open Panel",
-			},
-			{
-				"<leader>cs",
-				function()
-					copilot_suggestion.toggle_auto_trigger()
-				end,
-				desc = "toggle auto-trigger",
-			},
 		})
 
 		wk.setup()

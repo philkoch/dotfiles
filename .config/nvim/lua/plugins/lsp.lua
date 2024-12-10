@@ -75,12 +75,10 @@ return {
 				{ name = "buffer", keyword_length = 4 },
 				{ name = "luasnip", keyword_length = 2 },
 				{ name = "nvim_lua", keyword_length = 2 },
-				{ name = "copilot" },
 			}, {}),
 			sorting = {
 				priority_weight = 2,
 				comparators = {
-					require("copilot_cmp.comparators").prioritize,
 					cmp_compare.offset,
 					cmp_compare.exact,
 					cmp_compare.score,
@@ -110,7 +108,6 @@ return {
 					preset = "default",
 					mode = "symbol",
 					ellipsis_char = "...",
-					symbol_map = { Copilot = "" },
 					menu = {
 						buffer = "[buf]",
 						nvim_lsp = "[lsp]",
@@ -118,7 +115,6 @@ return {
 						path = "[path]",
 						luasnip = "[snp]",
 						cmdline = "[cmd]",
-						copilot = "[cop]",
 					},
 				}),
 			},
