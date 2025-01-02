@@ -40,6 +40,12 @@ zinit wait lucid for \
   OMZP::colored-man-pages \
   OMZP::ssh-agent
 
+# Improve vim mode, enable motions like `di"`
+# See <https://github.com/softmoth/zsh-vim-mode>
+
+zinit light softmoth/zsh-vim-mode
+
+
 
 # Load completions
 autoload -U compinit && compinit
@@ -51,6 +57,8 @@ autoload -U compinit && compinit
 bindkey -v
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+# set correct behaviour for del-key
+bindkey "^[[3~" delete-char
 
 
 # History
