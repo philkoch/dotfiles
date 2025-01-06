@@ -59,7 +59,7 @@ return {
 				function()
 					neogen.generate({ type = "func" })
 				end,
-				desc = "Document Class",
+				desc = "Document Function",
 			},
 		})
 
