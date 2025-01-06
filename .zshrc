@@ -57,8 +57,6 @@ autoload -U compinit && compinit
 bindkey -v
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-# set correct behaviour for del-key
-bindkey "^[[3~" delete-char
 
 
 # History
@@ -85,15 +83,27 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':omz:plugins:ssh-agent' lazy yes
 
 # Eldritch colortheme
-zstyle :prompt:pure:git:arrow color "#f16c75"
-zstyle :prompt:pure:git:branch color "#04d1f9"
-zstyle :prompt:pure:path color "#37f499"
-zstyle :prompt:pure:prompt:error color "#f16c75"
-zstyle :prompt:pure:prompt:success color "#37f499"
-zstyle :prompt:pure:prompt:continuation color "#f7c67f"
-zstyle :prompt:pure:suspended_jobs color "#f16c75"
-zstyle :prompt:pure:user color "#a48cf2"
-zstyle :prompt:pure:user:root color "#f1fc79"
+# zstyle :prompt:pure:git:arrow color "#f16c75"
+# zstyle :prompt:pure:git:branch color "#04d1f9"
+# zstyle :prompt:pure:path color "#37f499"
+# zstyle :prompt:pure:prompt:error color "#f16c75"
+# zstyle :prompt:pure:prompt:success color "#37f499"
+# zstyle :prompt:pure:prompt:continuation color "#f7c67f"
+# zstyle :prompt:pure:suspended_jobs color "#f16c75"
+# zstyle :prompt:pure:user color "#a48cf2"
+# zstyle :prompt:pure:user:root color "#f1fc79"
+
+
+# Kanagawa colortheme for Pure Prompt
+zstyle :prompt:pure:git:arrow color "#7FB4CA"       # Cyan für Git-Pfeile
+zstyle :prompt:pure:git:branch color "#957FB8"      # Magenta für Git-Branch
+zstyle :prompt:pure:path color "#7E9CD8"           # Blau für den Pfad
+zstyle :prompt:pure:prompt:error color "#C34043"   # Rot für Fehler
+zstyle :prompt:pure:prompt:success color "#98BB6C" # Grün für Erfolg
+zstyle :prompt:pure:prompt:continuation color "#DCA561" # Gelb für Fortsetzung
+zstyle :prompt:pure:suspended_jobs color "#C34043" # Rot für pausierte Jobs
+zstyle :prompt:pure:user color "#DCD7BA"           # Helle Vordergrundfarbe für User
+zstyle :prompt:pure:user:root color "#FFA066"      # Orange für Root-User
 
 # load aliases and token-env-variables
 if [ -f '/home/phil/.zsh_aliases' ]; then

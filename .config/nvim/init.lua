@@ -229,7 +229,8 @@ require("lazy").setup("plugins", { defaults = { lazy = false } })
 -- set colorscheme AFTER loading plugins
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("tokyonight-night")
-vim.cmd.colorscheme("eldritch")
+-- vim.cmd.colorscheme("eldritch")
+vim.cmd.colorscheme("kanagawa-wave")
 
 -- highlights the current line number
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f9e2af", bg = "#33313a", bold = true })
