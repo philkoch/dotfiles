@@ -130,6 +130,9 @@ vim.keymap.set("n", "<C-Down>", "<C-W>-")
 vim.keymap.set("n", "<C-Left>", "<c-w>5<")
 vim.keymap.set("n", "<C-Right>", "<c-w>5>")
 
+-- remove highlighting
+vim.keymap.set("n", "<leader>h", "<cmd>noh<CR>")
+
 -- AUTOCOMMANDS >>>>>>>>
 
 -- open :help in vertical split

@@ -59,7 +59,7 @@ return {
 			tabline = {},
 			winbar = {},
 			inactive_winbar = {},
-			extensions = { "nvim-dap-ui", "quickfix" },
+			extensions = { "quickfix" },
 		})
 	end,
 }

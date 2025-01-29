@@ -1,6 +1,23 @@
 return {
 	"numToStr/FTerm.nvim",
-	lazy = false,
+	keys = {
+		{
+			"<C-t>",
+			function()
+				require("FTerm").toggle()
+			end,
+			desc = "Open Floating Term",
+			mode = "n",
+		},
+		{
+			"<C-t>",
+			function()
+				require("FTerm").toggle()
+			end,
+			desc = "Close Floating Term",
+			mode = "t",
+		},
+	},
 	config = function()
 		require("FTerm").setup({
 			border = "single",
@@ -9,9 +26,5 @@ return {
 				width = 0.9,
 			},
 		})
-
-		-- keybindings
-		vim.keymap.set("n", "<C-t>", '<CMD>lua require("FTerm").toggle()<CR>')
-		vim.keymap.set("t", "<C-t>", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 	end,
 }

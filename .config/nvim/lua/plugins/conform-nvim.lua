@@ -1,27 +1,43 @@
 return {
 	"stevearc/conform.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
-	lazy = false,
-	config = function()
-		require("conform").setup({
-			formatters_by_ft = {
-				lua = { "stylua" },
-				python = { "isort", "black" },
-				javascript = { { "prettierd", "prettier" } },
-				xml = { "xmlformat" },
-			},
-			format_on_save = {
-				-- These options will be passed to conform.format()
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
-		})
-
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*",
-			callback = function(args)
-				require("conform").format({ bufnr = args.buf })
+	event = { "BufWritePre" },
+	cmd = { "ConformInfo" },
+	keys = {
+		{
+			"<leader>bf",
+			function()
+				require("conform").format({ async = true })
 			end,
-		})
-	end,
+			mode = "",
+			desc = "Format buffer",
+		},
+	},
+	---@module "conform"
+	---@type conform.setupOpts
+	opts = {
+		formatters_by_ft = {
+			lua = { "stylua" },
+			python = { "isort", "ruff_format" },
+			javascript = { "prettierd", "prettier", stop_after_first = true },
+			md = { "mdformat" },
+			json = { "jq" },
+			just = { "just" },
+			xml = { "xmlformatter" },
+		},
+		default_format_opts = {
+			lsp_format = "fallback",
+		},
+		-- Set up format-on-save
+		format_on_save = { timeout_ms = 500 },
+		-- Customize formatters
+		formatters = {
+			shfmt = {
+				prepend_args = { "-i", "2" },
+			},
+		},
+	},
+	-- init = function()
+	-- 	-- If you want the formatexpr, here is the place to set it
+	-- 	vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+	-- end,
 }

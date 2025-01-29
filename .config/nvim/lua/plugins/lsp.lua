@@ -125,17 +125,11 @@ return {
 
 		lsp.on_attach(function(client, bufnr)
 			local opts = { buffer = bufnr, remap = false }
-			vim.keymap.set("n", "gd", function()
-				require("telescope.builtin").lsp_definitions()
-			end, opts)
 			vim.keymap.set("n", "gl", function()
 				vim.diagnostic.open_float()
 			end, opts)
 			vim.keymap.set("n", "<leader>lq", function()
 				vim.lsp.buf.hover()
-			end, opts)
-			vim.keymap.set("n", "<leader>ld", function()
-				require("telescope.builtin").diagnostics({ bufnr = bufnr })
 			end, opts)
 			vim.keymap.set("n", "<leader>ln", function()
 				vim.diagnostic.goto_next()
@@ -145,9 +139,6 @@ return {
 			end, opts)
 			vim.keymap.set("n", "<leader>la", function()
 				vim.lsp.buf.code_action()
-			end, opts)
-			vim.keymap.set("n", "<leader>lr", function()
-				require("telescope.builtin").lsp_references()
 			end, opts)
 			vim.keymap.set("n", "<leader>lm", function()
 				vim.lsp.buf.rename()
@@ -163,23 +154,23 @@ return {
 		lsp.configure("pyright", {
 			-- look for poetry-lock file and set the correct venv in
 			-- neovim to make pyright behave correctly without calling
-			-- poetry shell before opening neovim
+			-- poetry shell before opening neovim. Poetry is configured to create
+			-- in-projects venvs (always in .venv) to not having to wait on the super
+			-- slow `poetry env path` execution
 			on_new_config = function(config, root_dir)
 				local match = vim.fn.glob(vim.fn.getcwd() .. "/poetry.lock")
-				local cur_venv = vim.env.VIRTUAL_ENV
+				-- local cur_venv = vim.env.VIRTUAL_ENV
 				if match ~= "" and cur_venv == nil or cur_venv == "" then
-					-- current poetry version prints out errors in addition to the path
-					-- when the pyproject toml contains deprecated definitions.
-					-- the warnings are removed here
+					--local venv_path = vim.fn.getcwd() .. "/.venv"
 					local poetry_env_output_with_warnings = vim.fn.trim(vim.fn.system("poetry env info -p"))
 					local lines = vim.fn.split(poetry_env_output_with_warnings, "\n")
 					local venv_path = lines[#lines]
+
 					vim.env.VIRTUAL_ENV = venv_path
 					vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
 					-- set pythonpath for pytest/neotest
 					vim.env.PYTHONPATH = vim.fn.getcwd()
 					config.settings.python.pythonPath = venv_path .. "/bin/python"
-					print(vim.env.VIRTUAL_ENV)
 				end
 			end,
 		})

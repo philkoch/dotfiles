@@ -1,8 +1,26 @@
 return {
 	"danymat/neogen",
 	dependencies = "nvim-treesitter/nvim-treesitter",
-	version = "*",
 	lazy = true,
+	keys = function()
+		local neogen = require("neogen")
+		return {
+			{
+				"<leader>lcc",
+				function()
+					neogen.generate({ type = "class" })
+				end,
+				desc = "Document Class",
+			},
+			{
+				"<leader>lcf",
+				function()
+					neogen.generate({ type = "func" })
+				end,
+				desc = "Document Function",
+			},
+		}
+	end,
 	config = function()
 		require("neogen").setup({
 			enabled = true,
