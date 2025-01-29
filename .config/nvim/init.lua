@@ -131,7 +131,7 @@ vim.keymap.set("n", "<C-Left>", "<c-w>5<")
 vim.keymap.set("n", "<C-Right>", "<c-w>5>")
 
 -- remove highlighting
-vim.keymap.set("n", "<leader>h", "<cmd>noh<CR>")
+vim.keymap.set("n", "<leader>h", "<cmd>noh<CR>", { desc = "󰉅   No Highlight" })
 
 -- AUTOCOMMANDS >>>>>>>>
 
@@ -151,17 +151,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),
 	callback = function()
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
-	end,
-})
-
--- close neotest-windows before leaving nvim, since they are loaded empty when stored
--- with the session
-vim.api.nvim_create_autocmd("VimLeavePre", {
-	group = vim.api.nvim_create_augroup("neotest", {}),
-	callback = function()
-		local neotest = require("neotest")
-		neotest.summary.close()
-		neotest.output_window.close()
 	end,
 })
 

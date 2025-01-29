@@ -60,15 +60,16 @@ return {
 					miniclue.gen_clues.registers(),
 					miniclue.gen_clues.windows(),
 					miniclue.gen_clues.z(),
+					{ mode = "n", keys = "<leader>r", desc = "   Run" },
+					{ mode = "n", keys = "<leader>b", desc = "   Buffers" },
+					{ mode = "n", keys = "<leader>d", desc = "   Debug" },
+					{ mode = "n", keys = "<leader>f", desc = "   Find" },
+					{ mode = "n", keys = "<leader>g", desc = "󰊢   Git" },
+					{ mode = "n", keys = "<leader>l", desc = "   LSP" },
+					{ mode = "n", keys = "<leader>t", desc = "󰙨   Test" },
+					{ mode = "n", keys = "<leader>x", desc = "󱍼   Trouble" },
+					{ mode = "n", keys = "<leader>z", desc = "   Zettelkasten" },
 				},
-			})
-			require("mini.sessions").setup({
-				-- Whether to read latest session if Neovim opened without file arguments
-				autoread = false,
-				-- Whether to write current session before quitting Neovim
-				autowrite = true,
-				-- Directory where global sessions are stored (use `''` to disable)
-				-- directory = "session",
 			})
 		end,
 	},

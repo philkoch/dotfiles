@@ -14,7 +14,7 @@ return {
 				api.tree.toggle()
 			end,
 			mode = "n",
-			desc = "Directory Tree",
+			desc = "   Directory Tree",
 		},
 	},
 	config = function()
