@@ -44,6 +44,7 @@ alias todo='task'
 alias tis='timew summary :id'
 alias tisy='timew summary :id :yesterday'
 alias tisw='timew summary :id :week'
+alias tisl='timew summary :id :lastweek'
 alias tism='timew summary :id :month'
 
 # processor development
