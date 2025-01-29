@@ -50,13 +50,15 @@ return {
 		{ "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
 		{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
-		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Find Git Files" },
-		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Find Help" },
+		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
+		{ "<leader>fl", function() Snacks.picker.resume() end, desc = "Resume last Picker" },
         -- LSP
 		{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "Go to definitions" },
 		{ "gr", function() Snacks.picker.lsp_references() end, desc = "Show References" },
         { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Go to Implementation" },
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Go to Type Definition" },
+
         { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 		--
 		-- stylua: ignore end
