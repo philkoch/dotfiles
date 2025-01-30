@@ -59,7 +59,7 @@ return {
         { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Go to Implementation" },
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Go to Type Definition" },
 
-        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+        { "<leader>lo", function() Snacks.picker.lsp_symbols() end, desc = "Show Outline" },
 		--
 		-- stylua: ignore end
 
