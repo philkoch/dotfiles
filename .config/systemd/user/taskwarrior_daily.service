@@ -1,0 +1,13 @@
+[Unit]
+Description=Adds a "Daily" Task
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/private/nxtcld/task_config/recurring/create_daily_task.sh
+WorkingDirectory=%h
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
