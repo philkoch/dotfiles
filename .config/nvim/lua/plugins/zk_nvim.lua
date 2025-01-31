@@ -1,5 +1,6 @@
 return {
 	"zk-org/zk-nvim",
+	lazy = true,
 	keys = function()
 		local zk = require("zk")
 		local function create_zk_note()
@@ -13,9 +14,8 @@ return {
 			end)
 		end
 		return {
-			{ "<leader>z", desc = " ZETTELKASTEN" },
-			{ "<leader>zn", create_zk_note, desc = "New Zettel" },
-			{ "<leader>zj", "<cmd>ZkNew { dir = 'journal' }<CR>", desc = "New Journal" },
+			{ "<leader>zn", create_zk_note, desc = "   New Zettel" },
+			{ "<leader>zj", "<cmd>ZkNew { dir = 'journal' }<CR>", desc = "   New Journal" },
 		}
 	end,
 	config = function()

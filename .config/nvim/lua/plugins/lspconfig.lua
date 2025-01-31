@@ -47,49 +47,49 @@ return {
 			function()
 				vim.diagnostic.open_float()
 			end,
-			desc = "Show Diagnostic",
+			desc = "   Show Diagnostic",
 		},
 		{
 			"<leader>ln",
 			function()
 				vim.diagnostic.goto_next()
 			end,
-			desc = "Next Diagnostic",
+			desc = "󰒭   Next Diagnostic",
 		},
 		{
 			"<leader>lp",
 			function()
 				vim.diagnostic.goto_prev()
 			end,
-			desc = "Previous Diagnostic",
+			desc = "󰒮   Previous Diagnostic",
 		},
 		{
 			"<leader>lq",
 			function()
 				vim.lsp.buf.hover()
 			end,
-			desc = "Show hover information",
+			desc = "󰠢   Show hover information",
 		},
 		{
 			"<leader>la",
 			function()
 				vim.lsp.buf.code_action()
 			end,
-			desc = "Code Action",
+			desc = "   Code Action",
 		},
 		{
 			"<leader>lm",
 			function()
 				vim.lsp.buf.rename()
 			end,
-			desc = "Rename",
+			desc = "   Rename",
 		},
 		{
 			"<leader>ls",
 			function()
 				vim.lsp.buf.signature_help()
 			end,
-			desc = "Signature Help",
+			desc = "󰮥   Signature Help",
 		},
 	},
 }

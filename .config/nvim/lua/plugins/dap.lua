@@ -17,77 +17,77 @@ return {
 				function()
 					require("dap").continue()
 				end,
-				desc = "Launch / Continue",
+				desc = "   Launch / Continue",
 			},
 			{
 				"<F10>",
 				function()
 					require("dap").step_over()
 				end,
-				desc = "Step Over",
+				desc = "   Step Over",
 			},
 			{
 				"<F11>",
 				function()
 					require("dap").step_into()
 				end,
-				desc = "Step Into",
+				desc = "   Step Into",
 			},
 			{
 				"<F12>",
 				function()
 					require("dap").step_out()
 				end,
-				desc = "Step Out",
+				desc = "   Step Out",
 			},
 			{
 				"<leader>db",
 				function()
 					require("dap").toggle_breakpoint()
 				end,
-				desc = "Toggle Breakpoint",
+				desc = "   Toggle Breakpoint",
 			},
 			{
 				"<leader>dc",
 				function()
 					require("dap-python").test_class({ config = { justMyCode = false } })
 				end,
-				desc = "Test Class",
+				desc = "   Test Class",
 			},
 			{
 				"<leader>dm",
 				function()
 					require("dap-python").test_method({ config = { justMyCode = false } })
 				end,
-				desc = "Test Method",
+				desc = "   Test Method",
 			},
 			{
 				"<leader>dl",
 				function()
 					require("dap").run_last()
 				end,
-				desc = "Run Last Session",
+				desc = "   Run Last Session",
 			},
 			{
 				"<leader>dp",
 				function()
 					require("dap").repl.open()
 				end,
-				desc = "Open REPL",
+				desc = "   Open REPL",
 			},
 			{
 				"<leader>dr",
 				function()
 					require("dap").restart()
 				end,
-				desc = "Restart Session",
+				desc = "󱄌   Restart Session",
 			},
 			{
 				"<leader>dx",
 				function()
 					require("dap").terminate()
 				end,
-				desc = "Stop",
+				desc = "   Stop",
 			},
 			{
 				"<leader>dB",
@@ -100,7 +100,7 @@ return {
 						end
 					end)
 				end,
-				desc = "Conditional Breakpoint",
+				desc = "   Conditional Breakpoint",
 			},
 		}
 	end,
@@ -115,15 +115,15 @@ return {
 
 		vim.fn.sign_define(
 			"DapBreakpoint",
-			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 		)
 		vim.fn.sign_define(
 			"DapBreakpointCondition",
-			{ text = "󱡴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 		)
 		vim.fn.sign_define(
 			"DapBreakpointRejected",
-			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
 		)
 		vim.fn.sign_define(
 			"DapLogPoint",

@@ -8,10 +8,10 @@ return {
 			function()
 				require("conform").format({ async = true })
 			end,
-			mode = "",
-			desc = "Format buffer",
+			desc = "󰗈   Format buffer",
 		},
 	},
+	ft = { "lua", "python", "js", "markdown", "json", "just", "xml" },
 	---@module "conform"
 	---@type conform.setupOpts
 	opts = {

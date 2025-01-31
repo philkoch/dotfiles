@@ -8,14 +8,14 @@ return {
 			function()
 				require("neogen").generate({ type = "class" })
 			end,
-			desc = "Document Class",
+			desc = "󰦨   Document Class",
 		},
 		{
 			"<leader>lcf",
 			function()
 				require("neogen").generate({ type = "func" })
 			end,
-			desc = "Document Function",
+			desc = "󰦩   Document Function",
 		},
 	},
 	config = function()

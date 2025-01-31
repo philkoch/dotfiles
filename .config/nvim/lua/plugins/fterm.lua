@@ -6,7 +6,7 @@ return {
 			function()
 				require("FTerm").toggle()
 			end,
-			desc = "Open Floating Term",
+			desc = "   Open Floating Term",
 			mode = "n",
 		},
 		{
@@ -14,7 +14,7 @@ return {
 			function()
 				require("FTerm").toggle()
 			end,
-			desc = "Close Floating Term",
+			desc = "   Close Floating Term",
 			mode = "t",
 		},
 	},

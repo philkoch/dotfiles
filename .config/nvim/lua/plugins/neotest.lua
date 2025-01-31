@@ -31,7 +31,7 @@ return {
 				require("neotest").summary.open()
 			end,
 			mode = "n",
-			desc = "Test current File",
+			desc = "󰙨  Test current File",
 		},
 		{
 			"<leader>tl",
@@ -39,7 +39,7 @@ return {
 				require("neotest").run.run_last()
 			end,
 			mode = "n",
-			desc = "Run last configuration",
+			desc = "󰁯   Run last configuration",
 		},
 
 		{
@@ -48,7 +48,7 @@ return {
 				require("neotest").output_panel.toggle()
 			end,
 			mode = "n",
-			desc = "Toggle test output",
+			desc = "   Toggle test output",
 		},
 		{
 			"<leader>ts",
@@ -56,7 +56,7 @@ return {
 				require("neotest").summary.toggle()
 			end,
 			mode = "n",
-			desc = "Toggle test summary",
+			desc = "   Toggle test summary",
 		},
 		{
 			"<leader>tt",
@@ -65,7 +65,7 @@ return {
 				require("neotest").summary.open()
 			end,
 			mode = "n",
-			desc = "Run nearest test",
+			desc = "󰜎   Run nearest test",
 		},
 		{
 			"<leader>tx",
@@ -73,7 +73,7 @@ return {
 				require("neotest").run.stop()
 			end,
 			mode = "n",
-			desc = "Stop test run",
+			desc = "   Stop test run",
 		},
 	},
 }
