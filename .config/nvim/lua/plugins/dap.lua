@@ -1,7 +1,4 @@
--- https://github.com/mfussenegger/nvim-dap
--- https://github.com/mfussenegger/nvim-dap-python
--- https://github.com/rcarriga/nvim-dap-ui
-
+-- TODO: add function to add value under cursor to watches
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
@@ -102,6 +99,13 @@ return {
 				end,
 				desc = "   Conditional Breakpoint",
 			},
+			{
+				"<leader>de",
+				function()
+					require("dapui").eval(nil, { enter = true })
+				end,
+				desc = "   Eval under cursor",
+			},
 		}
 	end,
 	config = function()
@@ -113,25 +117,22 @@ return {
 		dap_py.setup("~/.config/nvim/.virtualenvs/debugpy/bin/python")
 		dap_py.test_runner = "pytest"
 
-		vim.fn.sign_define(
-			"DapBreakpoint",
-			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-		)
+		vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "debugBreakpoint", linehl = "debugBreakpoint" })
 		vim.fn.sign_define(
 			"DapBreakpointCondition",
-			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+			{ text = "󰙠", texthl = "debugBreakpoint", linehl = "debugBreakpoint" }
 		)
 		vim.fn.sign_define(
 			"DapBreakpointRejected",
-			{ text = "", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+			{ text = "", texthl = "debugBreakpointRej", linehl = "debugBreakpointRej" }
 		)
 		vim.fn.sign_define(
 			"DapLogPoint",
-			{ text = "", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+			{ text = "", texthl = "debugLogPoint", linehl = "debugLogPoint", numhl = "debugLogPoint" }
 		)
 		vim.fn.sign_define(
 			"DapStopped",
-			{ text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+			{ text = "", texthl = "debugStopped", linehl = "debugStopped", numhl = "debugStopped" }
 		)
 		--
 		-- https://github.com/rcarriga/nvim-dap-ui
@@ -139,6 +140,9 @@ return {
 		dapui.setup()
 
 		dap.listeners.after.event_initialized["dapui_config"] = function()
+			dapui.open()
+		end
+		dap.listeners.after.event_attached["dapui_config"] = function()
 			dapui.open()
 		end
 		dap.listeners.before.event_terminated["dapui_config"] = function()

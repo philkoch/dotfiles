@@ -234,12 +234,6 @@ require("lazy").setup("plugins", { defaults = { lazy = false } })
 -- COLORSCHEME >>>>>>>
 -- set colorscheme AFTER loading plugins
 vim.cmd.colorscheme("kanagawa-wave")
-
--- highlights the current line number
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f9e2af", bg = "#33313a", bold = true })
--- color of line the debugger is on
-vim.api.nvim_set_hl(0, "debugPC", { fg = "#f9e2af", bg = "#33313a", bold = true })
-
 -- highlights for indent-blankline plugin
 vim.opt.termguicolors = true
 vim.opt.list = true
