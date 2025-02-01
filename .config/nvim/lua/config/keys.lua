@@ -1,8 +1,5 @@
 -- KEY MAPPINGS >>>>>>>>
 
--- netrw file explorer
--- vim.api.nvim_set_keymap("n", "<leader>e", ":Lexplore<CR> :vertical resize 30<CR>", { noremap = true })
-
 -- moves selected lines up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
