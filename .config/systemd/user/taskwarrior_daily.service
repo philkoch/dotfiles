@@ -1,5 +1,5 @@
 [Unit]
-Description=Adds a "Daily" Task
+Description=Add a "Daily" Task
 After=network.target
 
 [Service]

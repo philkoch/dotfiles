@@ -1,5 +1,5 @@
 [Unit]
-Description=Adds a "High Council" Task
+Description=Add a "High Council" Task
 After=network.target
 
 [Service]
