@@ -61,6 +61,7 @@ return {
 					miniclue.gen_clues.windows(),
 					miniclue.gen_clues.z(),
 					{ mode = "n", keys = "<leader>r", desc = "󰑮   Run" },
+					{ mode = "n", keys = "<leader>rp", desc = "   Poetry" },
 					{ mode = "n", keys = "<leader>b", desc = "   Buffers" },
 					{ mode = "n", keys = "<leader>d", desc = "   Debug" },
 					{ mode = "n", keys = "<leader>f", desc = "   Find" },
