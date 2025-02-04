@@ -109,12 +109,13 @@ return {
 		}
 	end,
 	config = function()
-		-- stop on exception
-		-- require("dap").defaults.fallback.exception_breakpoints = { "raised" }
 		-- allow switching of buffers on step-into action
-		require("dap").defaults.fallback.switchbuf = "usetab,uselast"
+		dap = require("dap")
+		dap.defaults.fallback.switchbuf = "usetab,uselast"
+		-- use directory where pyproject.toml is found as cwd instead of directory
+		-- of file
 		local dap_py = require("dap-python")
-		dap_py.setup("~/.config/nvim/.virtualenvs/debugpy/bin/python")
+		dap_py.setup("~/.config/nvim/.virtualenvs/debugpy/bin/python", {})
 		dap_py.test_runner = "pytest"
 
 		vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "debugBreakpoint", linehl = "debugBreakpoint" })
@@ -152,13 +153,16 @@ return {
 			dapui.close()
 		end
 
-		table.insert(require("dap").configurations.python, {
+		table.insert(dap.configurations.python, 1, {
 			type = "python",
 			request = "launch",
-			name = "Debug not justMyCode",
+			name = "Debug Python",
 			program = "${file}",
 			console = "integratedTerminal",
 			justMyCode = false,
+			cwd = function()
+				return vim.fn.getcwd()
+			end,
 		})
 	end,
 }

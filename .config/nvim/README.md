@@ -57,11 +57,8 @@ in neovim run (:warning:treesitter-plugin required!!)
 
 Use `:Mason` to open Mason and install the formatters and linters you want to use.
 
-## peek pre-install
 
-[deno](https://deno.land/) is required for rendering markdown. Install it
-from the package repo of your distro.
+# TODOs
 
-## indent-blankline
-
-add highlight-groups in init
+- add more relevant poetry commands to overseer (`install`, `env remove`)
+- visual-mode move block (with "<") not working for big blocks 
