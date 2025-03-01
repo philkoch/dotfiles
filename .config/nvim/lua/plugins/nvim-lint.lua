@@ -4,7 +4,7 @@ return {
 	ft = { "python", "lua", "json", "js", "markdown" },
 	config = function()
 		require("lint").linters_by_ft = {
-			markdown = { "vale" },
+			markdown = { "markdownlint" },
 			python = { "ruff", "mypy" },
 			lua = { "luacheck" },
 			json = { "jsonlint" },

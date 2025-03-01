@@ -42,7 +42,6 @@ one folder. I've created a `.virtualenvs` subfolder and installed it there
 cd ~/.config/nvim
 mkdir .virtualenvs
 cd .virtualenvs
-python venv .virtualenvs
 python -m venv debugpy
 debugpy/bin/python -m pip install debugpy
 ```
