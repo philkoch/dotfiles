@@ -5,13 +5,13 @@ export BROWSER=qutebrowser
 export GPG_TTY=$(tty)
 
 # taskwarrior and timewarrior
-TASKCONFIG_DIR="$HOME/private/nxtcld/task_config"
+TASKCONFIG_DIR="$HOME/nextcloud/task_config"
 export TASKDATA="$TASKCONFIG_DIR/taskwarrior"
 export TASKRC="$TASKDATA/.taskrc"
 export TIMEWARRIORDB="$TASKCONFIG_DIR/timewarrior"
 
 # zettelkasten
-export ZK_NOTEBOOK_DIR="$HOME/private/nxtcld/zk/notebook/"
+export ZK_NOTEBOOK_DIR="$HOME/nextcloud/zk/notebook/"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -26,3 +26,8 @@ export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini"
 
 # neovim session data
 export XDG_STATE_HOME="$HOME/.local/state/"
+
+# use SSH-Agent to store private-key passwords in KWallet
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+export SSH_ASKPASS='/usr/bin/ksshaskpass'
+export SSH_ASKPASS_REQUIRE=prefer

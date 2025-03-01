@@ -38,7 +38,6 @@ zinit wait lucid for \
   OMZP::sudo \
   OMZP::command-not-found \
   OMZP::colored-man-pages \
-  OMZP::ssh-agent
 
 # Improve vim mode, enable motions like `di"`
 # See <https://github.com/softmoth/zsh-vim-mode>
@@ -80,8 +79,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 
-zstyle ':omz:plugins:ssh-agent' lazy yes
-
 # Kanagawa colortheme for Pure Prompt
 zstyle :prompt:pure:git:arrow color "#7FB4CA"       # Cyan für Git-Pfeile
 zstyle :prompt:pure:git:branch color "#957FB8"      # Magenta für Git-Branch
@@ -121,3 +118,9 @@ zinit wait lucid for \
         zsh-users/zsh-completions \
         zsh-users/zsh-autosuggestions \
         Aloxaf/fzf-tab
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/phil/Tools/google-cloud-sdk/path.zsh.inc' ]; then . '/home/phil/Tools/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc'; fi
