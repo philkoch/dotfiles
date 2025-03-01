@@ -28,7 +28,8 @@ alias restart='shutdown -r now'
 
 # sql connections
 alias mysql-local='mysql -uroot -ppassword -h127.0.0.1'
-alias mysql-prod="gcloud beta sql connect operator-index --user=root --quiet"
+# alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uphil -p -h127.0.0.1 -P3307'
+alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uroot -p -h127.0.0.1 -P3307'
 # opens port to connect to cloud-sql at localhost:3307
 alias mysql-prod-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3307 aitastic-data:europe-west3:operator-index"
 alias mysql-test-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3308 aitastic-test-2:europe-west3:operator-index"
