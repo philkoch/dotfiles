@@ -42,8 +42,8 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # A more modern dmenu replacement is rofi:
-#bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-bindsym $mod+d exec "~/.config/rofi/bin/launcher"
+bindcode $mod+40 exec "rofi -modes 'drun,run' -show-icons -show drun"
+# bindsym $mod+d exec "~/.config/rofi/bin/launcher"
 bindsym $mod+p exec "~/.config/rofi/bin/screenshot"
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -225,7 +225,7 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
 no_focus [class="plasmashell" window_type="notification"]
 # kill plasma desktop that is in the foreground after login
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
 
 # Workspace assignments
 assign [class="qutebrowser"] → 2
