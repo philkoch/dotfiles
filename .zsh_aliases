@@ -27,7 +27,7 @@ alias off='shutdown now'
 alias restart='shutdown -r now'
 
 # sql connections
-alias mysql-local='mysql -uroot -ppassword -h127.0.0.1'
+alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
 # alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uphil -p -h127.0.0.1 -P3307'
 alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uroot -p -h127.0.0.1 -P3307'
 # opens port to connect to cloud-sql at localhost:3307
