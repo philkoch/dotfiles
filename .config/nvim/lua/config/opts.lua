@@ -95,3 +95,5 @@ vim.g.netrw_liststyle = 3
 
 -- use indent-fold method
 -- vim.opt.foldmethod = "indent"
+vim.opt.title = true
+vim.opt.titlestring = "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
