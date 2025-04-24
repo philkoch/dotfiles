@@ -1,25 +1,47 @@
 {
-    "PyTest Skeleton": {
-        "prefix": "['ps', 'pytest_skeleton']",
-        "description": "Sets up a basic unit test file with PyTest",
-        "body": [
-            "import pytest",
-            "",
-            "",
-            "@pytest.fixture",
-            "def ${1:fixture}():",
-            "    return ${2:item}",
-            "",
-            "def test_${3:test}(${1:fixture}):",
-            "    assert False"
-        ]
-    },
-    "Python function": {
-        "prefix": "['def', 'python function']",
-        "description": "Sets up a basic function",
-        "body": [
-            "def ${1:name}(${2:params}) -> ${3:return_type}:",
-            "    return ${2:item}"
-        ]
-    }
+  "PyTest Skeleton": {
+    "prefix": "['ps', 'pytest_skeleton']",
+    "description": "Sets up a basic unit test file with PyTest",
+    "body": [
+      "import pytest",
+      "",
+      "",
+      "@pytest.fixture",
+      "def ${1:fixture}():",
+      "    return ${2:item}",
+      "",
+      "def test_${3:test}(${1:fixture}):",
+      "    assert False"
+    ]
+  },
+  "Python function": {
+    "prefix": "['def', 'python function']",
+    "description": "Sets up a basic function",
+    "body": [
+      "def ${1:name}(${2:params}) -> ${3:return_type}:",
+      "    pass"
+    ]
+  },
+  "pymain": {
+    "prefix": "['main', 'pymain', '__name__']",
+    "description": "Sets up python if-main-clause",
+    "body": [
+      "if __name__ == \"__main__\":",
+      "   $0"
+    ]
+  },
+  "typing as t": {
+    "prefix": "['typt']",
+    "description": "import typing as t",
+    "body": [
+      "import typing as t"
+    ]
+  },
+  "default_logger": {
+    "prefix": "['dlog']",
+    "description": "instantiate logger",
+    "body": [
+      "LOG = logging.getLogger(__name__)"
+    ]
+  }
 }
