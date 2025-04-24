@@ -97,3 +97,18 @@ vim.g.netrw_liststyle = 3
 -- vim.opt.foldmethod = "indent"
 vim.opt.title = true
 vim.opt.titlestring = "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+
+-- pretty diffview
+vim.opt.fillchars = {
+	diff = "╱",
+}
+
+vim.opt.diffopt = {
+	"internal",
+	"filler",
+	"closeoff",
+	"context:12",
+	"algorithm:histogram",
+	"linematch:200",
+	"indent-heuristic",
+}

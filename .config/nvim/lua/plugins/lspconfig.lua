@@ -7,7 +7,7 @@ return {
 		{ "williamboman/mason-lspconfig.nvim", lazy = "VeryLazy" },
 		{ "saghen/blink.cmp" },
 	},
-	ft = { "python", "rust", "lua", "markdown", "txt" },
+	ft = { "python", "rust", "lua", "markdown", "txt", "toml", "json" },
 	opts = {
 		---@type lspconfig.options
 		servers = {
@@ -34,10 +34,6 @@ return {
 		require("mason").setup()
 		local lspconfig = require("lspconfig")
 		for server, config in pairs(opts.servers) do
-			-- passing config.capabilities to blink.cmp merges with the capabilities in your
-			-- `opts[server].capabilities, if you've defined it
-			-- TODO: once nvim is on 0.11+, this is not required anymore
-			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 			lspconfig[server].setup(config)
 		end
 	end,

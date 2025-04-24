@@ -7,16 +7,20 @@ require("config.functions")
 -- pretty in-line diagnostics
 vim.diagnostic.config({
 	virtual_text = true,
-	signs = true,
 	underline = false,
 	update_in_insert = false,
 	severity_sort = true,
+	-- set pretty diagnostics-signs in signcolumn
+
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.ERROR] = "",
+		},
+	},
 })
--- set pretty diagnostics-signs in signcolumn
-vim.fn.sign_define("DiagnosticSignError", { text = "" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "" })
 
 -- PLUGINS >>>>>>>>
 

@@ -23,6 +23,7 @@ return {
 			json = { "jq" },
 			just = { "just" },
 			xml = { "xmlformatter" },
+			toml = { "taplo" },
 		},
 		default_format_opts = {
 			lsp_format = "fallback",
