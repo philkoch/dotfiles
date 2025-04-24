@@ -16,20 +16,17 @@ alias vim='nvim'
 alias nvc='cd ~/.config/nvim && nvim'
 
 alias grep='rg'
-alias cat='bat'
+# alias cat='bat'
 alias lg='lazygit'
 
-# always open in pager 
-alias glow='glow -p'
-
 # power management
-alias off='shutdown now'
-alias restart='shutdown -r now'
+alias off='systemctl poweroff'
+alias restart='systemctl reboot'
 
 # sql connections
 alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
-# alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uphil -p -h127.0.0.1 -P3307'
-alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uroot -p -h127.0.0.1 -P3307'
+alias mysql-prod="mariadb --disable-ssl-verify-server-cert -uphil -p$GCP_MYSQL_PROD_PASS -h127.0.0.1 -P3307"
+# alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uroot -p -h127.0.0.1 -P3307'
 # opens port to connect to cloud-sql at localhost:3307
 alias mysql-prod-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3307 aitastic-data:europe-west3:operator-index"
 alias mysql-test-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3308 aitastic-test-2:europe-west3:operator-index"
@@ -54,7 +51,13 @@ alias rundevmod='export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini" && c
 
 # workaround scripts media monitoring
 alias similarweb="cd ~/Development/scripts-and-configs/workarounds/similar_web_metrics"
+
 alias source-tracker="cd ~/Development/scripts-and-configs/workarounds/source-tracker"
+alias opoint-source-checker="poetry run opoint-source-checker check-list domains.txt --es-password=${ES_PROD_PASS} --opoint-token=${OPOINT_TOKEN}"
+
+# Xbox controller enter pairing mode
+alias xbox-pair="echo 1 | sudo tee /sys/bus/usb/drivers/xone-dongle/*/pairing"
+alias xbox-pair-stop="echo 0 | sudo tee /sys/bus/usb/drivers/xone-dongle/*/pairing"
 
 ##########################################
 # FUNCTIONS                              #
@@ -85,4 +88,15 @@ colorize_stderr() {
         # Färben Sie stderr rot
         echo -e "${RED}${line}${NO_COLOR}"
     done)
+}
+
+tds() {
+    local date="$1"
+    if [[ -z "$date" ]]; then
+        echo "Date required as parameter. E.g. `tds 2025-04-01`"
+        return 1
+    fi
+    local start="${date}T00:00:00"
+    local end="$(date -d "$date + 1 day" +%Y-%m-%d)T00:00:00"
+    timew summary $start - $end
 }

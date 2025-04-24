@@ -1,11 +1,11 @@
 export TERMINAL=kitty
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=qutebrowser
+export BROWSER=firefox
 export GPG_TTY=$(tty)
 
 # taskwarrior and timewarrior
-TASKCONFIG_DIR="$HOME/nextcloud/task_config"
+export TASKCONFIG_DIR="$HOME/nextcloud/task_config"
 export TASKDATA="$TASKCONFIG_DIR/taskwarrior"
 export TASKRC="$TASKDATA/.taskrc"
 export TIMEWARRIORDB="$TASKCONFIG_DIR/timewarrior"
@@ -29,7 +29,18 @@ export XDG_STATE_HOME="$HOME/.local/state/"
 
 # use SSH-Agent to store private-key passwords in KWallet
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-export SSH_ASKPASS='/usr/bin/ksshaskpass'
+export SSH_ASKPASS='/usr/bin/lxqt-openssh-askpass'
 export SSH_ASKPASS_REQUIRE=prefer
 
+# add local/bin/ to path (required for pipx installs like poetry)
+export PATH="/home/phil/.local/bin:$PATH"
+
+
+# default screenshot directory for hyprshot
 export HYPRSHOT_DIR="$HOME/Pictures/screenshots"
+
+# start hyprland via uwsm
+if uwsm check may-start; then
+	exec uwsm start hyprland.desktop
+fi
+

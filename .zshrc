@@ -91,22 +91,12 @@ zstyle :prompt:pure:user color "#DCD7BA"           # Helle Vordergrundfarbe für
 zstyle :prompt:pure:user:root color "#FFA066"      # Orange für Root-User
 
 # load aliases and token-env-variables
-if [ -f '/home/phil/.zsh_aliases' ]; then
-    . '/home/phil/.zsh_aliases';
-fi
 if [ -f '/home/phil/.zsh_tokens' ]; then
     . '/home/phil/.zsh_tokens';
 fi
 
-# update path for gcloud
-# # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/phil/Tools/google-cloud-sdk/path.zsh.inc' ]; then
-    . '/home/phil/Tools/google-cloud-sdk/path.zsh.inc';
-fi
-
-# # The next line enables shell command completion for gcloud.
-if [ -f '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc' ]; then
-    . '/home/phil/Tools/google-cloud-sdk/completion.zsh.inc';
+if [ -f '/home/phil/.zsh_aliases' ]; then
+    . '/home/phil/.zsh_aliases';
 fi
 
 eval "$(fzf --zsh)"
