@@ -59,6 +59,11 @@ alias opoint-source-checker="poetry run opoint-source-checker check-list domains
 alias xbox-pair="echo 1 | sudo tee /sys/bus/usb/drivers/xone-dongle/*/pairing"
 alias xbox-pair-stop="echo 0 | sudo tee /sys/bus/usb/drivers/xone-dongle/*/pairing"
 
+# Hyprland HDR
+# empty fields mean don't adjust
+alias hdr-on="hyprctl keyword monitor \"DP-1,3440x1440@100,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98\""
+alias hdr-off="hyprctl keyword monitor \"DP-1,3440x1440@100,0x0,1,bitdepth,8\""
+
 ##########################################
 # FUNCTIONS                              #
 ##########################################
@@ -100,3 +105,4 @@ tds() {
     local end="$(date -d "$date + 1 day" +%Y-%m-%d)T00:00:00"
     timew summary $start - $end
 }
+
