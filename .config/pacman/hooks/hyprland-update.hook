@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Type      = Package
+Target    = hyprland
+
+[Action]
+Description = "Run hyprpm update after hyprland is updated"
+When        = PostTransaction
+Executable  = /usr/bin/hyprpm
+Arguments   = update
+
