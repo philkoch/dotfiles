@@ -42,4 +42,4 @@ require("lazy").setup("plugins", { defaults = { lazy = false } })
 -- COLORSCHEME >>>>>>>
 --
 -- set colorscheme AFTER loading plugins
-vim.cmd.colorscheme("kanagawa-wave")
+vim.cmd.colorscheme("retrobox")
