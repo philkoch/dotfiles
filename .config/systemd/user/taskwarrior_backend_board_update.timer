@@ -1,0 +1,9 @@
+[Unit]
+Description=Backend Board Update Taskwarrior Execution
+
+[Timer]
+OnCalendar=Fri 10:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

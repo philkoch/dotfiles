@@ -1,0 +1,9 @@
+[Unit]
+Description=Source API ChitChat Taskwarrior Execution
+
+[Timer]
+OnCalendar=Tue 9:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

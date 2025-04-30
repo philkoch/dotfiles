@@ -1,10 +1,10 @@
 [Unit]
-Description=Add a "High Council" Task
+Description=Add a "Backend Board Update" Task
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/nextcloud/task_config/recurring/create_high_council_task.sh
+ExecStart=task add +meeting proj:"IT Backend - Concept" "Backend Board Update"
 WorkingDirectory=%h
 StandardOutput=journal
 StandardError=journal

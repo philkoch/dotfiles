@@ -1,0 +1,9 @@
+[Unit]
+Description=Virtual Coffee Break Taskwarrior Execution
+
+[Timer]
+OnCalendar=Fri 09:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

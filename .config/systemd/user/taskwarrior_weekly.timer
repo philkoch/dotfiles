@@ -2,7 +2,7 @@
 Description=Daily Taskwarrior Execution
 
 [Timer]
-OnCalendar=Mon,Tue,Thu,Fri 10:00
+OnCalendar=Wed 10:00
 Persistent=false
 
 [Install]

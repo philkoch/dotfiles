@@ -1,10 +1,10 @@
 [Unit]
-Description=Add a "High Council" Task
+Description=Add a "Weekly" Task
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/nextcloud/task_config/recurring/create_high_council_task.sh
+ExecStart=task add +meeting proj:"Development Daily" "Development Weekly"
 WorkingDirectory=%h
 StandardOutput=journal
 StandardError=journal

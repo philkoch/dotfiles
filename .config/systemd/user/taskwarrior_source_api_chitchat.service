@@ -1,10 +1,10 @@
 [Unit]
-Description=Add a "High Council" Task
+Description=Add a "Source API ChitChat" Task
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/nextcloud/task_config/recurring/create_high_council_task.sh
+ExecStart=task add +meeting proj:"Source API - Concept" "Chit Chat with Lukas"
 WorkingDirectory=%h
 StandardOutput=journal
 StandardError=journal
