@@ -106,3 +106,25 @@ tds() {
     timew summary $start - $end
 }
 
+merge_pdf() {
+    # collects all files with the given prefix, merges them with
+    # ghostscript and writes them out to $prefix.pdf
+    local prefix="$1"
+    if [[ -z $prefix ]]; then
+      echo "Usage: merge_pdf <prefix>"
+      return 1
+    fi
+    
+    local files=( "${prefix}"_*.pdf )
+    if (( ${#files[@]} == 0 )); then
+      echo "Didn't find files with prefix »${prefix}_*.pdf«"
+      return 1
+    fi
+    
+    local out="${prefix}.pdf"
+    
+    gs -dBATCH -dNOPAUSE \
+        -sDEVICE=pdfwrite \
+        -sOutputFile="$out" \
+        -f "${files[@]}"
+}
