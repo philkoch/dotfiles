@@ -16,6 +16,7 @@ return {
 					dap = { justMyCode = false },
 					args = { "-vvv", "--ignore=tests/resources/integration" },
 				}),
+				require("rustaceanvim.neotest"),
 			},
 			status = {
 				virtual_text = false,

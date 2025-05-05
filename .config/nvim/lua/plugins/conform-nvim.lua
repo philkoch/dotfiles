@@ -24,6 +24,7 @@ return {
 			just = { "just" },
 			xml = { "xmlformatter" },
 			toml = { "taplo" },
+			rust = { "rustfmt" },
 		},
 		default_format_opts = {
 			lsp_format = "fallback",
