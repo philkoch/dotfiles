@@ -42,7 +42,7 @@ return {
 		{ "<leader>gb", function() Snacks.git.blame_line() end, desc = "󰮛   Git Blame Line", },
 		{ "<leader>gg", function() Snacks.lazygit.open() end, desc = "   LazyGit", },
 		{ "<leader>gc", function() Snacks.picker.git_log() end, desc = "   Git Log", },
-		{ "<leader>gs", function() Snacks.picker.git_status() end, desc = "󱖫   Git Status", },
+        -- { "<leader>gs", function() Snacks.picker.git_status() end, desc = "󱖫   Git Status", },
 		-- picker
         -- buffers
 		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "   Buffers" },
