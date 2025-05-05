@@ -1,0 +1,6 @@
+[Unit]
+Description=Backup of Paperless export
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rsync -av geralt@motherflipp.in:/opt/paperless/export/ "%h/Documents/backups/paperless"
