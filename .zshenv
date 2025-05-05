@@ -1,5 +1,5 @@
 # PATH-addition for scripts, pipx, etc.
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/Apps:$HOME/.cargo/bin:$PATH"
 
 # XDG-Default-folders 
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
