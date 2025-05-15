@@ -18,6 +18,7 @@ fi
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+
 # Add in PowerLevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
@@ -35,7 +36,6 @@ zinit wait lucid for \
   zsh-users/zsh-completions \
   zsh-users/zsh-autosuggestions \
   Aloxaf/fzf-tab \
-  softmoth/zsh-vim-mode
 
 # Load completions
 autoload -U compinit && compinit
@@ -80,5 +80,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 [[ -f '/home/phil/.zsh_tokens' ]] && source '/home/phil/.zsh_tokens'
 [[ -f '/home/phil/.zsh_aliases' ]] && source '/home/phil/.zsh_aliases';
 
-# FZF-zsh integration
-eval "$(fzf --zsh)"
+# run FZF-zsh integration after zsh-vim-mode
+zinit light softmoth/zsh-vim-mode
+source <(fzf --zsh)
