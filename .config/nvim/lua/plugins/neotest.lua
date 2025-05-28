@@ -1,3 +1,9 @@
+local function get_test_cwd()
+	local file = vim.fn.expand("%:p")
+	local match = file:match("(.-/packages/[^/]+/src)/")
+	return match or vim.fn.getcwd()
+end
+
 return {
 	"nvim-neotest/neotest",
 	lazy = true,
@@ -28,16 +34,25 @@ return {
 		{
 			"<leader>tf",
 			function()
-				require("neotest").run.run(vim.fn.expand("%"))
+				require("neotest").run.run({ path = vim.fn.expand("%"), cwd = get_test_cwd() })
 				require("neotest").summary.open()
 			end,
 			mode = "n",
 			desc = "󰙨  Test current File",
 		},
 		{
+			"<leader>tt",
+			function()
+				require("neotest").run.run({ cwd = get_test_cwd() })
+				require("neotest").summary.open()
+			end,
+			mode = "n",
+			desc = "󰜎   Run nearest test",
+		},
+		{
 			"<leader>tl",
 			function()
-				require("neotest").run.run_last()
+				require("neotest").run.run_last({ cwd = get_test_cwd() })
 			end,
 			mode = "n",
 			desc = "󰁯   Run last configuration",
@@ -58,15 +73,6 @@ return {
 			end,
 			mode = "n",
 			desc = "   Toggle test summary",
-		},
-		{
-			"<leader>tt",
-			function()
-				require("neotest").run.run()
-				require("neotest").summary.open()
-			end,
-			mode = "n",
-			desc = "󰜎   Run nearest test",
 		},
 		{
 			"<leader>tx",
