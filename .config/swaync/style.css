@@ -1,0 +1,16 @@
+window {
+  border-radius: 10px;
+  color: #cdd6f4;
+  font-family: "Berkeley Mono", monospace;
+}
+
+.notification {
+  padding: 12px;
+  border-bottom: 1px solid #313244;
+}
+
+.notification.critical {
+  background-color: #f38ba8;
+  color: black;
+}
+
