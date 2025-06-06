@@ -1,6 +1,6 @@
 local function get_test_cwd()
 	local file = vim.fn.expand("%:p")
-	local match = file:match("(.-/packages/[^/]+/src)/")
+	local match = file:match("(.-/packages/[^/]+)/")
 	return match or vim.fn.getcwd()
 end
 
