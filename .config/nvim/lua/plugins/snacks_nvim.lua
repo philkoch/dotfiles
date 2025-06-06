@@ -50,6 +50,7 @@ return {
         -- files
 		{ "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "   Find Config File" },
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "󰱼   Find Files" },
+		{ "<leader>fs", function() Snacks.picker.smart() end, desc = "󰱼   Smart Files" },
 		{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "   Find Git Files" },
 		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "   Recent Files" },
         -- misc
