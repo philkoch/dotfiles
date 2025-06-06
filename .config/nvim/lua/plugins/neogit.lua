@@ -12,6 +12,9 @@ return {
 	},
 	config = function()
 		require("neogit").setup({
+			commit_editor = {
+				kind = "vsplit", -- open commit-window in vertical split
+			},
 			integations = {
 				diffview = true,
 			},
