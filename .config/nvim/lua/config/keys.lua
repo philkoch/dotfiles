@@ -31,3 +31,13 @@ vim.keymap.set("n", "<C-Right>", "<c-w>5>")
 
 -- remove highlighting
 vim.keymap.set("n", "<leader>h", "<cmd>noh<CR>", { desc = "󰉅   No Highlight" })
+
+-- tab handling
+vim.keymap.set("n", "<leader>Tn", "<cmd>tabnext<CR>", { desc = "󰮱  Next tab" })
+vim.keymap.set("n", "<leader>Tp", "<cmd>tabprevious<CR>", { desc = "󰮳  Previous tab" })
+vim.keymap.set("n", "<leader>Tc", "<cmd>tabclose<CR>", { desc = "  Close tab" })
+
+-- no autocommands on save with `:W`, useful to store file without formatting
+vim.api.nvim_create_user_command("W", function()
+	vim.cmd("noautocmd write")
+end, {})
