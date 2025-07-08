@@ -38,6 +38,42 @@ return {
 			},
 		})
 		require("overseer").register_template({
+			name = "poetry lock",
+			builder = function(params)
+				return {
+					cmd = "poetry",
+					args = { "lock" },
+					name = "Poetry Lock",
+					cwd = vim.fn.getcwd(),
+					components = { "default", "on_output_quickfix" },
+				}
+			end,
+			priority = 50,
+			condition = {
+				callback = function(search)
+					return vim.fn.filereadable(vim.fn.getcwd() .. "/pyproject.toml") == 1
+				end,
+			},
+		})
+		require("overseer").register_template({
+			name = "poetry sync",
+			builder = function(params)
+				return {
+					cmd = "poetry",
+					args = { "sync" },
+					name = "Poetry Sync",
+					cwd = vim.fn.getcwd(),
+					components = { "default", "on_output_quickfix" },
+				}
+			end,
+			priority = 50,
+			condition = {
+				callback = function(search)
+					return vim.fn.filereadable(vim.fn.getcwd() .. "/pyproject.toml") == 1
+				end,
+			},
+		})
+		require("overseer").register_template({
 			name = "docker build AITASTIC",
 			builder = function(params)
 				return {
@@ -113,6 +149,20 @@ return {
 				require("utils").run_template_open_view({ name = "poetry install" })
 			end,
 			desc = "  Poetry Install",
+		},
+		{
+			"<leader>rpl",
+			function()
+				require("utils").run_template_open_view({ name = "poetry lock" })
+			end,
+			desc = "  Poetry Lock",
+		},
+		{
+			"<leader>rps",
+			function()
+				require("utils").run_template_open_view({ name = "poetry sync" })
+			end,
+			desc = "  Poetry Sync",
 		},
 		{
 			"<leader>rd",
