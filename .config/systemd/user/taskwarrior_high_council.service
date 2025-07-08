@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/nextcloud/task_config/recurring/create_high_council_task.sh
+ExecStart=task add +meeting proj:"IT Backend - Concept" "High Council Weekly"
 WorkingDirectory=%h
 StandardOutput=journal
 StandardError=journal
