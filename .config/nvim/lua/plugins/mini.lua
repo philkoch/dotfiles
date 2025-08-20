@@ -17,7 +17,6 @@ return {
 					timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
 				},
 			})
-			require("mini.surround").setup()
 			local miniclue = require("mini.clue")
 			miniclue.setup({
 				triggers = {

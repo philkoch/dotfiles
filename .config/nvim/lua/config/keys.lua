@@ -41,3 +41,8 @@ vim.keymap.set("n", "<leader>Tc", "<cmd>tabclose<CR>", { desc = "  Close tab"
 vim.api.nvim_create_user_command("W", function()
 	vim.cmd("noautocmd write")
 end, {})
+
+-- cheap surround alternative, add " around word under cursor
+vim.keymap.set("n", "<leader>q", 'ciw"<C-r>""<Esc>', { noremap = true, silent = true, desc = 'Quote word with "' })
+-- add " around selected text
+vim.keymap.set("x", "<leader>q", 'c"<C-r>""<Esc>', { noremap = true, silent = true, desc = 'Quote selection with "' })
