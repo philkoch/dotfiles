@@ -53,6 +53,7 @@ return {
 		{ "<leader>fs", function() Snacks.picker.smart() end, desc = "󰱼   Smart Files" },
 		{ "<leader>fg", function() Snacks.picker.git_files() end, desc = "   Find Git Files" },
 		{ "<leader>fr", function() Snacks.picker.recent() end, desc = "   Recent Files" },
+		{ "<leader>fn", function() Snacks.picker.notifications() end, desc = "  Find Notifications" },
         -- misc
 		{ "<leader>fh", function() Snacks.picker.help() end, desc = "󰾚   Find Help" },
 		{ "<leader>fl", function() Snacks.picker.resume() end, desc = "󰁯   Resume last Picker" },
