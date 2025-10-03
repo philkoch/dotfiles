@@ -22,6 +22,7 @@ alias lg='lazygit'
 # power management
 alias off='systemctl poweroff'
 alias restart='systemctl reboot'
+alias sus='systemctl suspend'
 
 # sql connections
 alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
