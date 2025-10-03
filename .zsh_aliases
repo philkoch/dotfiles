@@ -19,6 +19,7 @@ alias grep='rg'
 # alias cat='bat'
 alias lg='lazygit'
 
+
 # power management
 alias off='systemctl poweroff'
 alias restart='systemctl reboot'
@@ -33,6 +34,7 @@ alias mysql-test="mariadb --disable-ssl-verify-server-cert -uphil -p$GCP_MYSQL_T
 # opens port to connect to cloud-sql at localhost:3307
 alias mysql-prod-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3307 aitastic-data:europe-west3:operator-index"
 alias mysql-test-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3308 aitastic-test-2:europe-west3:operator-index"
+alias sql-datascan-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3309 aitastic-data:europe-west3:datascan"
 
 # development apps in docker
 export DOCKER_APPS_DIR='/home/phil/Development/docker-configs'
@@ -85,7 +87,17 @@ download_es_doc() {
         echo "You need to set a ID! e.g. download_es_doc 42d1a1c7a2526959bf79c2439ef186a2e4753f1a203b1b7efa3b8f8b6b39e32f"
         return 1
     fi
-    http -a $ELASTICSEARCH_AUTH "https://es.aitastic.com/newsstand/_search?q=_id:$ID" | jq > $ID.json
+    http -a $ELASTICSEARCH_PROD_AUTH "https://es.aitastic.com/newsstand/_search?q=_id:$ID" | jq > $ID.json
+}
+
+download_es_doc_dev() {
+    # downloads a document from test-Elasticsearch into a JSON-file based on it's ID
+    ID=$1
+    if [[ -z $ID ]]; then
+        echo "You need to set a ID! e.g. download_es_doc_dev 42d1a1c7a2526959bf79c2439ef186a2e4753f1a203b1b7efa3b8f8b6b39e32f"
+        return 1
+    fi
+    http -a $ELASTICSEARCH_DEV_AUTH "https://es.dev.aitastic.com/newsstand/_search?q=_id:$ID" | jq > $ID.json
 }
 
 colorize_stderr() {
