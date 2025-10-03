@@ -26,8 +26,9 @@ alias sus='systemctl suspend'
 
 # sql connections
 alias mysql-local='mariadb -uroot -ppassword -h127.0.0.1'
-alias mysql-prod="mariadb --disable-ssl-verify-server-cert -uphil -p$GCP_MYSQL_PROD_PASS -h127.0.0.1 -P3307"
-alias mysql-test="mariadb --disable-ssl-verify-server-cert -uphil -p$GCP_MYSQL_TEST_PASS -h127.0.0.1 -P3308"
+alias mysql-prod="mariadb --disable-ssl-verify-server-cert -uphil -p$GCP_MYSQL_PROD_PASS -h127.0.0.1 -P3307 operator"
+alias mysql-test="mariadb --disable-ssl-verify-server-cert -uphil -p$GCP_MYSQL_TEST_PASS -h127.0.0.1 -P3308 operator"
+
 # alias mysql-prod='mariadb --disable-ssl-verify-server-cert -uroot -p -h127.0.0.1 -P3307'
 # opens port to connect to cloud-sql at localhost:3307
 alias mysql-prod-port-forward="~/Tools/cloud-sql-proxy/cloud-sql-proxy --address 0.0.0.0 --port 3307 aitastic-data:europe-west3:operator-index"
