@@ -38,4 +38,27 @@ function M.run_template_open_view(opts)
 	end)
 end
 
+function M.find_project_root(start_path)
+	local pyproject_paths = vim.fs.find("pyproject.toml", {
+		upward = true,
+		path = start_path,
+		stop = vim.fn.getcwd(),
+	})
+
+	for _, path in ipairs(pyproject_paths) do
+		local dir = vim.fs.dirname(path)
+		if dir:match("/packages/[^/]+$") then
+			return dir
+		end
+	end
+
+	-- kein packages/*/pyproject.toml gefunden → Root verwenden?
+	local first = pyproject_paths[1]
+	if first and vim.fs.dirname(first) == vim.fn.getcwd() then
+		return vim.fn.getcwd()
+	end
+
+	return vim.fn.getcwd() -- absoluter fallback
+end
+
 return M

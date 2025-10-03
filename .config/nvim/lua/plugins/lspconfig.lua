@@ -1,11 +1,12 @@
 return {
 	"neovim/nvim-lspconfig",
 	lazy = true,
+	priority = 500,
 	---@class PluginLspOpts
 	dependencies = {
-		{ "williamboman/mason.nvim", lazy = "VeryLazy" },
-		{ "williamboman/mason-lspconfig.nvim", lazy = "VeryLazy" },
-		{ "saghen/blink.cmp" },
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"saghen/blink.cmp",
 	},
 	ft = { "python", "rust", "lua", "markdown", "txt", "toml", "json" },
 	opts = {
