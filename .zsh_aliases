@@ -67,6 +67,8 @@ alias xbox-pair-stop="echo 0 | sudo tee /sys/bus/usb/drivers/xone-dongle/*/pairi
 alias hdr-on="hyprctl keyword monitor \"DP-1,3440x1440@100,0x0,1,bitdepth,10,cm,hdr,sdrbrightness,1.2,sdrsaturation,0.98\""
 alias hdr-off="hyprctl keyword monitor \"DP-1,3440x1440@100,0x0,1,bitdepth,8\""
 
+alias claude="~/.npm/modules/bin/claude"
+
 ##########################################
 # FUNCTIONS                              #
 ##########################################
