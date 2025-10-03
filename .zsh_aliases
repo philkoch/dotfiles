@@ -120,9 +120,9 @@ merge_pdf() {
       return 1
     fi
     
-    local files=( "${prefix}"_*.pdf )
+    local -a files=( "${prefix}"_[0-9][0-9][0-9][0-9].pdf )
     if (( ${#files[@]} == 0 )); then
-      echo "Didn't find files with prefix »${prefix}_*.pdf«"
+      echo "Didn't find files matching »${prefix}_[0-9][0-9][0-9][0-9].pdf«"
       return 1
     fi
     
