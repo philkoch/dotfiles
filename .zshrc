@@ -76,9 +76,13 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 # zstyle :prompt:pure:user color "#DCD7BA"           # Helle Vordergrundfarbe für User
 # zstyle :prompt:pure:user:root color "#FFA066"      # Orange für Root-User
 
+# load local_env first to overwrite directories on different hosts
+[[ -f "${HOME}/.local_env" ]] && source "${HOME}/.local_env";
+
 # load aliases and token-env-variables
-[[ -f '/home/phil/.zsh_tokens' ]] && source '/home/phil/.zsh_tokens'
-[[ -f '/home/phil/.zsh_aliases' ]] && source '/home/phil/.zsh_aliases';
+[[ -f "${HOME}/.zsh_tokens" ]] && source "${HOME}/.zsh_tokens"
+[[ -f "${HOME}/.zsh_aliases" ]] && source "${HOME}/.zsh_aliases";
+
 
 # run FZF-zsh integration after zsh-vim-mode
 zinit light softmoth/zsh-vim-mode
