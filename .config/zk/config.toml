@@ -46,6 +46,18 @@ paths = ["journal/weekly", "journal/daily"]
 [group.journal.note]
 filename = "{{format-date now}}"
 
+[group.projects]
+paths = ["projects"]
+
+[group.projects.note]
+template = "project"
+
+[group.resources]
+paths = ["resources"]
+
+[group.resources.note]
+template = "resource"
+
 
 # MARKDOWN SETTINGS
 [format.markdown]
