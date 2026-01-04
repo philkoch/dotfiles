@@ -27,11 +27,11 @@ function M.get_poetry_venv()
 	return nil
 end
 
-function M.run_template_open_view(opts)
+function M.run_task_open_view(opts)
 	-- opens the task view when a template is run
 	-- see https://github.com/stevearc/overseer.nvim/issues/36#issuecomment-1238715487
 	local overseer = require("overseer")
-	overseer.run_template(opts, function(task)
+	overseer.run_task(opts, function(task)
 		if task then
 			overseer.open({ enter = false })
 		end

@@ -118,14 +118,14 @@ return {
 		{
 			"<leader>rr",
 			function()
-				require("utils").run_template_open_view()
+				require("utils").run_task_open_view()
 			end,
 			desc = "󱜆   Template ...",
 		},
 		{
 			"<leader>rj",
 			function()
-				require("utils").run_template_open_view({ name = "just qa", params = { args = {} } })
+				require("utils").run_task_open_view({ name = "just qa", params = { args = {} } })
 			end,
 			desc = "󰙨   Just QA-recipe",
 		},
@@ -139,35 +139,35 @@ return {
 		{
 			"<leader>rpu",
 			function()
-				require("utils").run_template_open_view({ name = "poetry update" })
+				require("utils").run_task_open_view({ name = "poetry update" })
 			end,
 			desc = "󰁡   Poetry Update",
 		},
 		{
 			"<leader>rpi",
 			function()
-				require("utils").run_template_open_view({ name = "poetry install" })
+				require("utils").run_task_open_view({ name = "poetry install" })
 			end,
 			desc = "  Poetry Install",
 		},
 		{
 			"<leader>rpl",
 			function()
-				require("utils").run_template_open_view({ name = "poetry lock" })
+				require("utils").run_task_open_view({ name = "poetry lock" })
 			end,
 			desc = "  Poetry Lock",
 		},
 		{
 			"<leader>rps",
 			function()
-				require("utils").run_template_open_view({ name = "poetry sync" })
+				require("utils").run_task_open_view({ name = "poetry sync" })
 			end,
 			desc = "  Poetry Sync",
 		},
 		{
 			"<leader>rd",
 			function()
-				require("utils").run_template_open_view({ name = "docker build AITASTIC" })
+				require("utils").run_task_open_view({ name = "docker build AITASTIC" })
 			end,
 			desc = "   Docker Build AITASTIC",
 		},
