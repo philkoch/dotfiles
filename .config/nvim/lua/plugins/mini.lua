@@ -71,6 +71,7 @@ return {
 					{ mode = "n", keys = "<leader>x", desc = "󱍼   Trouble" },
 					{ mode = "n", keys = "<leader>z", desc = "   Zettelkasten" },
 					{ mode = "n", keys = "<leader>T", desc = "   Tabs" },
+					{ mode = "n", keys = "<leader>n", desc = "   NeoVim" },
 				},
 			})
 		end,
