@@ -158,42 +158,6 @@ return {
 		dap.listeners.before.event_exited["dapui_config"] = function()
 			dapui.close()
 		end
-
-		-- rust debugging
-		-- local mason_registry = require("mason-registry")
-		-- local pkg = mason_registry.get_package("codelldb")
-		-- local adapter_path = pkg.get_install_path() .. "/extension/adapter/codelldb"
-		--
-		-- dap.adapters.codelldb = {
-		-- 	type = "server",
-		-- 	port = "${port}",
-		-- 	executable = {
-		-- 		command = adapter_path,
-		-- 		args = { "--port", "${port}" },
-		-- 	},
-		-- }
-		--
-		-- dap.configurations.rust = {
-		-- 	{
-		-- 		name = "Debug Rust Main Binary",
-		-- 		type = "codelldb",
-		-- 		request = "launch",
-		-- 		program = vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t"),
-		-- 		cwd = "${workspaceFolder}",
-		-- 		stopOnEntry = false,
-		-- 	},
-		-- 	{
-		-- 		name = "Debug Rust Manual Binary",
-		-- 		type = "codelldb",
-		-- 		request = "launch",
-		-- 		program = function()
-		-- 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
-		-- 		end,
-		-- 		cwd = "${workspaceFolder}",
-		-- 		stopOnEntry = false,
-		-- 	},
-		-- }
-
 		-- python debugging
 		table.insert(dap.configurations.python, 1, {
 			name = "Debug Python",
@@ -223,6 +187,45 @@ return {
 			cwd = function()
 				return require("utils").find_project_root(vim.fn.expand("%:p"))
 			end,
+		})
+
+		table.insert(dap.configurations.python, 3, {
+			type = "python",
+			request = "launch",
+			name = "Launch file with arguments",
+			program = "${file}",
+			args = function()
+				local input = vim.fn.input("Arguments: ")
+				local py_cmd =
+					[[python3 -c "import shlex, sys, json; print(json.dumps(shlex.split(sys.stdin.read())))"]]
+				local result = vim.fn.systemlist(py_cmd, input)
+				return vim.fn.json_decode(table.concat(result, "\n"))
+			end,
+		})
+
+		table.insert(dap.configurations.python, {
+			name = "Debug meta-graph-api-processor __main__",
+			type = "python",
+			request = "launch",
+			module = "meta_graph_api_processor.__main__", -- wichtig: als Modul starten
+			console = "integratedTerminal",
+			justMyCode = false,
+			cwd = vim.fn.getcwd(), -- Projekt-Root
+			env = {
+				PYTHONPATH = vim.fn.getcwd() .. "/packages/meta-graph-api-processor/src",
+			},
+		})
+		table.insert(dap.configurations.python, {
+			name = "Debug source-processor",
+			type = "python",
+			request = "launch",
+			module = "source_processor.source_processor", -- wichtig: als Modul starten
+			console = "integratedTerminal",
+			justMyCode = false,
+			cwd = vim.fn.getcwd(), -- Projekt-Root
+			env = {
+				PYTHONPATH = vim.fn.getcwd() .. "/packages/source-processor/src",
+			},
 		})
 	end,
 }
