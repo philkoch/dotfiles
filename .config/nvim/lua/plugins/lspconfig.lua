@@ -24,6 +24,8 @@ return {
 							vim.env.VIRTUAL_ENV = venv_path
 							vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
 							vim.env.PYTHONPATH = vim.fn.getcwd()
+							config.settings = config.settings or {}
+							config.settings.python = config.settings.python or {}
 							config.settings.python.pythonPath = venv_path .. "/bin/python"
 						end
 					end
