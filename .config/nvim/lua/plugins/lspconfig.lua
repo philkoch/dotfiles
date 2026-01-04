@@ -33,9 +33,10 @@ return {
 	},
 	config = function(_, opts)
 		require("mason").setup()
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 		for server, config in pairs(opts.servers) do
-			lspconfig[server].setup(config)
+			-- lspconfig[server].setup(config)
+			vim.lsp.config(config)
 		end
 	end,
 	keys = {
