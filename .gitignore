@@ -1,3 +1,10 @@
 .zcompdump
 config_dev.ini
 **/*_dev.toml
+**/maixun_updates_*.xlsx
+**/.coverage
+**/.python-version
+**/.~lock.*.xlsx#
+*-similarweb.csv
+similarweb_metrics*.csv
+
