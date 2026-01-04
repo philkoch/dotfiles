@@ -41,5 +41,14 @@ local function add_quotes()
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 end
 
--- Create a command to call the function
 vim.api.nvim_create_user_command("AddQuotes", add_quotes, {})
+
+local function remove_empty_lines()
+	-- saves current cursor position
+	local cursor_pos = vim.api.nvim_win_get_cursor(0)
+	vim.cmd([[%s/^\s*$\n//e]])
+	-- sets cursor back
+	vim.api.nvim_win_set_cursor(0, cursor_pos)
+end
+
+vim.api.nvim_create_user_command("RemoveEmptyLines", remove_empty_lines, {})
