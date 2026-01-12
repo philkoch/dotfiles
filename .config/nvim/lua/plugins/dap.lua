@@ -58,7 +58,12 @@ return {
 				"<leader>dm",
 				function()
 					require("dap-python").test_method({
-						config = { justMyCode = false },
+						config = {
+							justMyCode = false,
+							cwd = function()
+								return require("utils").find_project_root(vim.fn.expand("%:p"))
+							end,
+						},
 					})
 				end,
 				desc = "   Test Method",
