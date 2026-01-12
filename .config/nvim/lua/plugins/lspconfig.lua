@@ -41,16 +41,16 @@ return {
 							-- Environment angleichen (auch für ruff/black usw.)
 							vim.env.VIRTUAL_ENV = venv
 							vim.env.PATH = pj(venv, "bin") .. ":" .. vim.env.PATH
-							vim.notify("Pyright: using poetry venv python: " .. python, vim.log.levels.INFO)
+							vim.notify("using poetry venv: " .. python, vim.log.levels.INFO)
 						end
 					end
 					if not python or python == "" then
 						local exepath = vim.fn.exepath("python3")
 						if exepath ~= "" and vim.fn.executable(exepath) == 1 then
 							python = exepath
-							vim.notify("Pyright: using PATH python: " .. python, vim.log.levels.INFO)
+							vim.notify("using PATH python: " .. python, vim.log.levels.INFO)
 						else
-							vim.notify("Pyright: no valid python found!", vim.log.levels.ERROR)
+							vim.notify("no valid python found!", vim.log.levels.ERROR)
 							return
 						end
 					end
