@@ -34,7 +34,9 @@ return {
 		{
 			"<leader>tf",
 			function()
-				require("neotest").run.run({ path = vim.fn.expand("%"), cwd = get_test_cwd() })
+				local file = vim.fn.expand("%:p")
+				local match = file:match("(.-/packages/[^/]+)/")
+				require("neotest").run.run({ path = vim.fn.expand("%"), cwd = match })
 				require("neotest").summary.open()
 			end,
 			mode = "n",
