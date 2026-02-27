@@ -45,3 +45,5 @@ export SSH_ASKPASS_REQUIRE=prefer
 # default screenshot directory for hyprshot
 export HYPRSHOT_DIR="$HOME/Pictures/screenshots"
 
+# adjust CDPATH to easily access repos for work 
+export CDPATH="$HOME/Development"
