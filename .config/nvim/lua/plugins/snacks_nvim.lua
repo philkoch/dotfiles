@@ -71,9 +71,7 @@ return {
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "   Go to Type Definition" },
 
         { "<leader>lo", function() Snacks.picker.lsp_symbols() end, desc = "   Show Outline" },
-        { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "   Notification History"
-}
-,
+        { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "   Notification History" },
 		--
 		-- stylua: ignore end
 	},
