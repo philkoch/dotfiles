@@ -35,7 +35,7 @@ fi
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # AITASTIC processor dev config
-export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.ini"
+export KAFKA_PROCESSOR_CONFIG_PATH="config/config_dev.toml"
 
 # use SSH-Agent to store private-key passwords in KeePassXC
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/keepassxc-ssh-agent.socket"
