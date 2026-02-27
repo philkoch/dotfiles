@@ -12,6 +12,7 @@ alias top='htop'
 alias dev='cd ~/Development'
 # always use nvim
 alias vim='nvim'
+alias vimdiff='nvim -d'
 # directly edit neovim config
 alias nvc='cd ~/.config/nvim && nvim'
 
@@ -203,3 +204,11 @@ update() {
     fi
 }
 
+fix_zsh_history() {
+    # if zsh_history gets corrupted, extracts the uncorrupted strings from the corrupted
+    # history and creates an uncorrupted history-file from them.
+    mv ~/.zsh_history ~/.zsh_history_bad
+    strings ~/.zsh_history_bad > ~/.zsh_history
+    fc -R ~/.zsh_history
+    rm ~/.zsh_history_bad
+}
