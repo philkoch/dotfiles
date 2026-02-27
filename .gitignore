@@ -7,4 +7,7 @@ config_dev.ini
 **/.~lock.*.xlsx#
 *-similarweb.csv
 similarweb_metrics*.csv
-
+launch.json
+dist
+.claude
+.vscode
