@@ -193,8 +193,8 @@ update() {
     # detects if hyprland was updated during the system-update and
     # if so runs `hyprpm update`
     version_before=$(get_hyprland_version)
-    # update system
-    paru -Syu
+    # update system, take paru options if any
+    paru -Syu "$@"
     version_after=$(get_hyprland_version)
     if [[ "$version_before" != "$version_after" ]]; then
         echo "Hyprland was updated: $version_before → $version_after. Running 'hyprpm update'"
