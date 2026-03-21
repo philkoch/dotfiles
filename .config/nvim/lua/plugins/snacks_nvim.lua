@@ -20,7 +20,14 @@ return {
 		layout = { enabled = false },
 		lazygit = { enabled = true },
 		notifier = { enabled = true },
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			formatters = {
+				file = {
+					filename_first = false,
+				},
+			},
+		},
 		quickfile = { enabled = true },
 		rename = { enabled = false },
 		scope = { enabled = false },
