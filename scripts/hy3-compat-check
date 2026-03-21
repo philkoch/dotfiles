@@ -1,0 +1,78 @@
+#!/bin/sh
+# 
+# Intended to be called from by pacman PreTransaction hook (NeedsTargets).
+# Aborts the transaction if no matching hy3 release exists for the new hyprland version.
+#
+# >> To install into pacman, place this in /etc/pacman.d/hooks/hy3-compat-check.hook
+#
+# #####################
+# [Trigger]
+# Operation = Upgrade
+# Type = Package
+# Target = hyprland
+# 
+# [Action]
+# Description = Checking hy3 plugin compatibility...
+# When = PreTransaction
+# Exec = $PATH_TO_THIS_SCRIPT
+# NeedsTargets
+# AbortOnFail
+# #####################
+
+set -eu
+
+HY3_REPO="outfoxxed/hy3"
+SKIP_FILE="/tmp/hy3-skip-check"
+
+if [ -f "$SKIP_FILE" ]; then
+    echo "hy3-compat-check: skip file found, allowing upgrade."
+    rm -f "$SKIP_FILE"
+    exit 0
+fi
+
+# NeedsTargets passes package names on stdin, one per line
+if ! grep -q '^hyprland$'; then
+    exit 0
+fi
+
+# Get the version about to be installed from sync DB
+new_version=$(pacman -Si hyprland 2>/dev/null | sed -n 's/^Version[[:space:]]*:[[:space:]]*\(.*\)-.*/\1/p')
+
+if [ -z "$new_version" ]; then
+    echo "hy3-compat-check: could not determine new hyprland version, allowing upgrade."
+    exit 0
+fi
+
+# hy3 releases follow hl<major>.<minor>.<patch> pattern (e.g. hl0.54.2)
+hy3_prefix="hl$(echo "$new_version" | awk -F. '{print $1"."$2}')"
+
+echo "hy3-compat-check: hyprland upgrade to ${new_version} detected."
+echo "hy3-compat-check: checking for hy3 release matching ${hy3_prefix}.* ..."
+
+# Find any release tag matching the major.minor version
+hy3_tag=$(curl -s "https://api.github.com/repos/${HY3_REPO}/releases" 2>/dev/null \
+    | grep -o "\"tag_name\":[[:space:]]*\"${hy3_prefix}\.[0-9]*\"" \
+    | head -1 \
+    | grep -o '"[^"]*"$' \
+    | tr -d '"')
+
+if [ -n "$hy3_tag" ]; then
+    echo "hy3-compat-check: hy3 release ${hy3_tag} exists. Proceeding."
+    exit 0
+fi
+
+cat <<MSG
+
+============================================================
+  ABORTING: No hy3 release for hyprland ${new_version}
+  (checked for tags matching: ${hy3_prefix}.*)
+
+  To upgrade anyway, run:
+    touch ${SKIP_FILE} && update && rm ${SKIP_FILE}
+
+  To upgrade everything except hyprland and its ABI libs:
+    update --ignore hyprland,aquamarine,hyprcursor,hyprgraphics,hyprlang,hyprutils,hyprwayland-scanner,hyprwire,hyprland-guiutils
+============================================================
+
+MSG
+exit 1
