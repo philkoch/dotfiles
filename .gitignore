@@ -11,3 +11,4 @@ launch.json
 dist
 .claude
 .vscode
+**/noctalia/plugins/**

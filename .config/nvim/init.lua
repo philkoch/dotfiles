@@ -43,3 +43,6 @@ require("lazy").setup("plugins", { defaults = { lazy = false } })
 --
 -- set colorscheme AFTER loading plugins
 -- vim.cmd.colorscheme("retrobox")
+
+-- handled by noctalia-shell
+require("matugen").setup()
